@@ -1,0 +1,78 @@
+ion-header {
+	background: var(--white);
+	box-shadow: 0 -11px 6px 10px rgba(0, 0, 0, 0.2);
+
+	ion-toolbar {
+		ion-title {
+			position: relative !important;
+			padding: 0 0px !important;
+			//			padding-left: 35px !important;
+		}
+		ion-buttons ion-back-button{
+			--color: #000 !important;
+			color: #000 !important;
+		}
+	}
+	
+	
+
+	.syllabus_details {
+		padding: 10px 0;
+		padding-right: 11px;
+
+		.back-button-has-icon-only {
+			min-width: 24px !important;
+			height: 24px !important;
+			color: #000 !important;
+
+			ion-icon {
+				color: #000 !important;
+			}
+		}
+
+		h2 {
+			margin: 0;
+			color: var(--text-light);
+			font-size: 0.96rem;
+			opacity: 0.6;
+
+			span {
+				font-size: 0.8rem;
+				font-weight: 500;
+				padding: 0 6px;
+			}
+		}
+
+		h3 {
+			margin: 0;
+			color: #000;
+			text-align: justify;
+			font-size: 1.5rem;
+		}
+	}
+
+}
+
+.container {
+	background: var(--white);
+	padding: 15px 17px;
+	margin-top: 8px;
+
+	.text_box {
+		padding-bottom: 20px;
+
+		h2 {
+			margin: 0;
+			font-size: 1.15rem;
+			font-weight: 600;
+			padding-bottom: 5px;
+		}
+
+		p {
+			margin: 0;
+			font-size: .95rem;
+			line-height: 23px;
+			margin-bottom: 5px;
+		}
+	}
+}

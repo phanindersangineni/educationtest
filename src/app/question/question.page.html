@@ -1,0 +1,185 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>05:28 min</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+	<ion-slides #mySlides>
+		<ion-slide class="ion-text-start">
+			<div class="container">
+				<div class="question">
+					<h2>{{'question' | translate}} 1/5</h2>
+					
+						<div id="append"></div>
+					
+				</div>
+				<div class="option_container">
+					<div class="option rigt_answers">
+						<h3>
+							<div id="choice1"></div>
+						</h3>
+					</div>
+					<div class="option">
+						<h3>Industries</h3>
+					</div>
+					<div class="option">
+						<h3>Fishing</h3>
+					</div>
+					<div class="option wrong_answers">
+						<h3>Cattle rearing</h3>
+					</div>
+				</div>
+				<div class="bottom_bar">
+					<ion-row>
+						<ion-col size="5" class="d-flex previous_btn disabled">
+							<ion-icon class="zmdi zmdi-chevron-left"></ion-icon>
+							<h2>{{'previous' | translate}}</h2>
+						</ion-col>
+						<ion-col size="7">
+							<ion-button size="large" class="btn" (click)="swipeNext()">{{'next' | translate}}</ion-button>
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+		</ion-slide>
+
+		<ion-slide class="ion-text-start">
+			<div class="container">
+				<div class="question">
+					<h2>{{'question' | translate}} 2/5</h2>
+					<p>Who was the founder of the Theosophical Society in India and started the Home Rule League?</p>
+				</div>
+				<div class="option_container">
+					<div class="option">
+						<h3>Annie Besant</h3>
+					</div>
+					<div class="option">
+						<h3>Acharya Narendra Dev</h3>
+					</div>
+					<div class="option">
+						<h3>Lal-Bal-Pal</h3>
+					</div>
+					<div class="option ">
+						<h3>None of the above</h3>
+					</div>
+				</div>
+				<div class="bottom_bar">
+					<ion-row>
+						<ion-col size="5" class="d-flex previous_btn" (click)="swipePrevious()">
+							<ion-icon class="zmdi zmdi-chevron-left"></ion-icon>
+							<h2>{{'previous' | translate}}</h2>
+						</ion-col>
+						<ion-col size="7">
+							<ion-button size="large" class="btn" (click)="swipeNext()">{{'next' | translate}}</ion-button>
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide class="ion-text-start">
+			<div class="container">
+				<div class="question">
+					<h2>{{'question' | translate}} 3/5</h2>
+					<p>Who among the following known as Pocket Hercules?</p>
+				</div>
+				<div class="option_container">
+					<div class="option">
+						<h3>Mike Tyson</h3>
+					</div>
+					<div class="option">
+						<h3>Manohar Aich</h3>
+					</div>
+					<div class="option">
+						<h3>Manotosh Roy</h3>
+					</div>
+					<div class="option">
+						<h3>Manotosh Roy</h3>
+					</div>
+				</div>
+				<div class="bottom_bar">
+					<ion-row>
+						<ion-col size="5" class="d-flex previous_btn" (click)="swipePrevious()">
+							<ion-icon class="zmdi zmdi-chevron-left"></ion-icon>
+							<h2>{{'previous' | translate}}</h2>
+						</ion-col>
+						<ion-col size="7">
+							<ion-button size="large" class="btn" (click)="swipeNext()">{{'next' | translate}}</ion-button>
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide class="ion-text-start">
+			<div class="container">
+				<div class="question">
+					<h2>{{'question' | translate}} 4/5</h2>
+					<p>Who was the first president of Uzbekistan?</p>
+				</div>
+				<div class="option_container">
+					<div class="option">
+						<h3> Abdulhashim Mutalov</h3>
+					</div>
+					<div class="option">
+						<h3> Oʻtkir Sultonov</h3>
+					</div>
+					<div class="option">
+						<h3>Islam Karimov</h3>
+					</div>
+					<div class="option">
+						<h3>Nigmatilla Yuldashev</h3>
+					</div>
+				</div>
+				<div class="bottom_bar">
+					<ion-row>
+						<ion-col size="5" class="d-flex previous_btn" (click)="swipePrevious()">
+							<ion-icon class="zmdi zmdi-chevron-left"></ion-icon>
+							<h2>{{'previous' | translate}}</h2>
+						</ion-col>
+						<ion-col size="7">
+							<ion-button size="large" class="btn" (click)="swipeNext()">{{'next' | translate}}</ion-button>
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+		</ion-slide>
+		
+		<ion-slide class="ion-text-start">
+			<div class="container">
+				<div class="question">
+					<h2>{{'question' | translate}} 5/5</h2>
+					<p>Which of the following eminent personalities who was the ninth monarch of Thailand from the Chakri Dynasty as Rama IX?</p>
+				</div>
+				<div class="option_container">
+					<div class="option ">
+						<h3>Sirikit Kitiyakara</h3>
+					</div>
+					<div class="option">
+						<h3>Vajiralongkorn</h3>
+					</div>
+					<div class="option">
+						<h3>Ananda Mahidol</h3>
+					</div>
+					<div class="option">
+						<h3>Bhumibol Adulyadej</h3>
+					</div>
+				</div>
+				<div class="bottom_bar">
+					<ion-row>
+						<ion-col size="5" class="d-flex previous_btn" (click)="swipePrevious()">
+							<ion-icon class="zmdi zmdi-chevron-left"></ion-icon>
+							<h2>{{'previous' | translate}}</h2>
+						</ion-col>
+						<ion-col size="7">
+							<ion-button size="large" class="btn disabled">{{'next' | translate}}</ion-button>
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+		</ion-slide>
+
+	</ion-slides>
+</ion-content>

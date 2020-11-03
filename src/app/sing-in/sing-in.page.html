@@ -1,0 +1,31 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-title></ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="banner">
+		<div class="logo">
+			<img src="assets/images/logo2.jpg">
+		</div>
+	</div>
+
+	<div class="form" >
+		<form [formGroup]="onLoginForm"  >
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-input placeholder="user name" formControlName="username" type="text"></ion-input>
+			</ion-item>
+
+			<ion-item lines="none">
+				<ion-input placeholder="{{'password' | translate}}" formControlName="password" type="password"></ion-input>
+
+			</ion-item>
+
+			<ion-button size="large" type="submit" [disabled]="!onLoginForm.valid" 
+			class="btn" (click)="goTohome()">{{'sign_in' | translate}}</ion-button>
+		</ion-list>
+		</form>
+	</div>
+</ion-content>

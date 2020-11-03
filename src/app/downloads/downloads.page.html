@@ -1,0 +1,128 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title> {{'app_title' | translate}}</ion-title>
+	</ion-toolbar>
+
+	<div class="profle_box d-flex" (click)="my_profile()">
+		<div class="profile_text">
+			<h2>{{'hello' | translate}} User,</h2>
+			<h3>13 Oct, 2020 Web</h3>
+		</div>
+		<div class="img_box end center_img">
+			<img src="assets/images/profile_pick.png" class="crop_img">
+		</div>
+	</div>
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="container">
+		<div class="whats_next">
+			<h2>{{'whats_next' | translate}}</h2>
+			<h3>Geometric weekly test</h3>
+			<h4 class="d-flex">2 days to go <span class="end">{{'view_all' | translate}}</span></h4>
+		</div>
+
+		<div class="menu_container">
+			<ion-row>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="videos()" >
+						<h2>Offline Videos</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_about.png">
+						</div>
+					</div>
+				</ion-col>
+
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="videos()">
+						<h2>Online Videos</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_insights.png">
+						</div>
+					</div>
+				</ion-col>
+				
+				
+				<!--<ion-col size="6">
+					<div class="menu d-flex" (click)="faculties_message()">
+						<h2>{{'messages' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_messages.png">
+						</div>
+					</div>
+				</ion-col>
+
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="syllabus()">
+						<h2>{{'syllabus' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_syllabus.png">
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="calender()">
+						<h2>{{'calender' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_calender.png">
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="tests()">
+						<h2>{{'tests' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_tests.png">
+						</div>
+					</div>
+				</ion-col>
+
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="insight()">
+						<h2>{{'insights' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_insights.png">
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="about_academy()">
+						<h2>{{'about' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_about.png">
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="faculties()">
+						<h2>{{'faculities' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_faculties.png">
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="support()">
+						<h2>{{'support' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_support.png">
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="menu d-flex" (click)="faculties_message()">
+						<h2>{{'messages' | translate}}</h2>
+						<div class="menu_img end">
+							<img src="assets/images/ic_messages.png">
+						</div>
+					</div>
+				</ion-col>-->
+			</ion-row>
+		</div>
+	</div>
+
+	
+</ion-content>

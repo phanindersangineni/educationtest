@@ -1,0 +1,47 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'profile' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="img_container ">
+		<div class="profile_img_box">
+			<div class="profile_img center_img">
+				<img src="assets/images/profile_pick.png" class="crop_img">
+			</div>
+			<ion-icon class="zmdi zmdi-camera"></ion-icon>
+		</div>
+	</div>
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-icon class="zmdi zmdi-account ion-text-start" slot="start"></ion-icon>
+				<ion-label position="stacked">{{'full_name' | translate}}</ion-label>
+				<ion-input type="name" value="Samantha Smith"></ion-input>
+			</ion-item>
+			<ion-item lines="none">
+				<ion-icon class="zmdi zmdi-email  ion-text-start" slot="start"></ion-icon>
+				<ion-label position="stacked">{{'email_address' | translate}}</ion-label>
+				<ion-input type="email" value="samanthasmith@mail.com"></ion-input>
+			</ion-item>
+			<ion-item lines="none">
+				<ion-icon class="zmdi zmdi-phone ion-text-start" slot="start"></ion-icon>
+				<ion-label position="stacked">{{'contact_number' | translate}}</ion-label>
+				<ion-input type="text" value="+1 987 654 3210"></ion-input>
+			</ion-item>
+			<ion-item lines="none">
+				<ion-icon class="zmdi zmdi-assignment-account ion-text-start" slot="start"></ion-icon>
+				<ion-label position="stacked">{{'batch' | translate}}</ion-label>
+				<ion-input type="text" value="10 C"></ion-input>
+			</ion-item>
+
+		</ion-list>
+	</div>
+</ion-content>
+<ion-footer no-border>
+	<ion-button size="large" class="btn">{{'update_profile' | translate}}</ion-button>
+</ion-footer>

@@ -1,0 +1,297 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'tests' | translate}}</ion-title>
+	</ion-toolbar>
+
+	<ion-segment [(ngModel)]="tab" lines="none">
+		<ion-segment-button value="upcoming_test">
+			<ion-label>
+				{{'upcoming_test' | translate}}
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="past_test">
+			<ion-label>
+				{{'past_test' | translate}}
+			</ion-label>
+		</ion-segment-button>
+	</ion-segment>
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'upcoming_test'">
+			<ion-item (click)="question()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>{{todaysexam.exam}}</h3>
+						<p>
+							{{todaysexam.description}}
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex">{{todaysexam.totalquestions}} {{'questions' | translate}}
+								<span></span>
+								{{todaysexam.duration}}  mins
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end" *ngIf ="canstartexam &&  !candownload">
+							<div class="start_now">
+								{{'start_now' | translate}}
+							</div>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end" *ngIf ="!canstartexam && !candownload">
+							<div class="start_now">
+								Expired 
+							</div>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end" *ngIf ="!canstartexam && candownload">
+							<div class="start_now">
+								Download Exam 
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+		</ion-list>
+
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'past_test'">
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Maths Algebric test</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex correct_answers">26/30 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #7
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								08 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Quiz Compitition</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex wrong_answers">10/30 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #26
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								22 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Social Studis test</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex skipped_answers">35/50 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #12
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								22 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Maths Algebric test</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex correct_answers">26/30 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #7
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								08 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Quiz Compitition</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex wrong_answers">10/30 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #26
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								22 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Social Studis test</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex skipped_answers">35/50 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #12
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								22 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Maths Algebric test</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex correct_answers">26/30 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #7
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								08 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Quiz Compitition</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex wrong_answers">10/30 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #26
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								22 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+
+			<ion-item (click)="test_result()">
+				<div class="item_container">
+					<div class="syllabus">
+						<h3>Social Studis test</h3>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						</p>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p class="d-flex skipped_answers">35/50 {{'correct' | translate}}
+								<span></span>
+								{{'rank' | translate}} #12
+							</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<p class="test_date">
+								22 Jun, 2019 Sat
+							</p>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>

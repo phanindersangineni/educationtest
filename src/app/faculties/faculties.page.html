@@ -1,0 +1,1406 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'faculities' | translate}}</ion-title>
+	</ion-toolbar>
+
+	<ion-segment [(ngModel)]="tab" lines="none" scrollable>
+		<ion-segment-button value="all">
+			<ion-label>
+				All
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Science">
+			<ion-label>
+				Science
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="English">
+			<ion-label>
+				English
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="social_science">
+			<ion-label>
+				Social Science
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="History">
+			<ion-label>
+				History
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Biology">
+			<ion-label>
+				Biology
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Chemistry">
+			<ion-label>
+				Chemistry
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Physics">
+			<ion-label>
+				Physics
+			</ion-label>
+		</ion-segment-button>
+	</ion-segment>
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'all'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Emill Willamson</h3>
+							<p> 
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/4.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Maths, Science, Social Science </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science,Maths </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/1.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Emill Willamson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/4.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Maths, Science, Social Science </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science,Maths </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/1.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Emill Willamson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/4.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Maths, Science, Social Science </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science,Maths </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/1.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Science'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Joseph taylor</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/6.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'English'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Joseph taylor</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/6.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>	<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Joseph taylor</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/6.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'social_science'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Emill Willamson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/4.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Social Science </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/1.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>	<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Emill Willamson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/4.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Social Science </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/1.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'History'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p> History </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>History </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>History</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>	<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p> History </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>History </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>History</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Biology'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Joseph taylor</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Biology </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/6.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Biology </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Biology </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item><ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Joseph taylor</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Biology </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/6.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Biology </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Biology </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Chemistry'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Chemistry</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Joseph taylor</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/5.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Chemistry</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/6.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Chemistry</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+		<ion-list lines="none" *ngSwitchCase="'Physics'">
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Emill Willamson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/4.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Maths, Science, Social Science </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>George Smith</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/3.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>Science,Maths </p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Dr Patrik Johnson</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/1.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+
+			<ion-item (click)="faculties_messages()">
+				<div class="item_container">
+					<div class="faculitie_details d-flex">
+						<div class="text_box">
+							<h3>Linda Devis</h3>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							</p>
+						</div>
+						<div class="img_box end center_img">
+							<img src="assets/images/2.png" class="crop_img">
+						</div>
+					</div>
+
+					<ion-row>
+						<ion-col size="7">
+							<p>English,Socila Studies</p>
+						</ion-col>
+						<ion-col size="5" class="ion-text-end">
+							<div class="message">
+								<ion-icon class="zmdi zmdi-email"></ion-icon>
+								&nbsp;
+								{{'message' | translate}}
+							</div>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>

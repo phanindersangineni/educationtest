@@ -1,0 +1,50 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'app_title' | translate}}</ion-title>
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content class="bg_color">
+	<vg-player (onPlayerReady)="onPlayerReady($event)">
+		<vg-overlay-play></vg-overlay-play>
+		<vg-buffering></vg-buffering>
+	
+		<vg-scrub-bar>
+		  <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+		  <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+		</vg-scrub-bar>
+	
+		<vg-controls>
+		  <vg-play-pause></vg-play-pause>
+		  <vg-playback-button></vg-playback-button>
+	
+		  <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+	
+		  <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+	
+		  <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display> &nbsp;
+		  <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+	
+		  <vg-track-selector></vg-track-selector>
+		  <vg-mute></vg-mute>
+		  <vg-volume></vg-volume>
+	
+		  <vg-fullscreen></vg-fullscreen>
+		</vg-controls>
+	
+		<video [vgMedia]="media" #media id="singleVideo" preload="auto" >
+		  <source [src]="base64" 
+		  type="video/mp4">
+		
+		</video>
+	  </vg-player> 
+
+	  <!--<video controls>
+		<source type="video/mp4" src="data:video/mp4;base64,">
+	</video>-->
+	
+</ion-content>

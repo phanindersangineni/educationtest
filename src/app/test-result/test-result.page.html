@@ -1,0 +1,72 @@
+<ion-header class="bg_transparent">
+	<!--
+	<ion-toolbar>
+		<ion-title>test-result</ion-title>
+	</ion-toolbar>
+-->
+	<!--	<h2 class="ion-text-center">{{'faculities' | translate}}</h2>-->
+	<div class="banner">
+		<h2 class="ion-text-center">Social Studies Test</h2>
+		<div class="rank_box">
+			<h3 class="ion-text-center">{{'rank' | translate}}#</h3>
+			<h1 class="ion-text-center">8</h1>
+		</div>
+
+		<h4 class="ion-text-center">{{'you_are_excellent' | translate}}, Samanatha !!</h4>
+
+		<div class="chart-skills">
+			<div class="barprogress_bar correct_answers" style="transform: rotate(146.6deg);"></div>
+			<div class="barprogress_bar wrong_answers" style="transform: rotate(158.6deg);"></div>
+			<div class="barprogress_bar skipped_answers" style="transform: rotate(180.6deg);"></div>
+			<div class="text">
+				<h4>
+					85
+					<span>
+						<small>%</small>
+						<strong>Correct</strong>
+					</span>
+				</h4> 
+			</div>
+
+		</div>
+	</div>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+	<div class="container">
+		<div class="result d-flex correct_answers">
+			<h2>{{'correct_answers' | translate}}</h2>
+			<h3 class="end">
+				<strong>27</strong>
+				<span>(85%)</span>
+				<ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+			</h3>
+		</div>
+		<div class="result d-flex wrong_answers">
+			<h2>{{'wrong_answers' | translate}}</h2>
+			<h3 class="end">
+				<strong>02</strong>
+				<span>(10%)</span>
+				<ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+			</h3>
+		</div>
+		<div class="result d-flex skipped_answers">
+			<h2>{{'skipped_answers' | translate}}</h2>
+			<h3 class="end">
+				<strong>01</strong>
+				<span>(05%)</span>
+				<ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+			</h3>
+		</div>
+	</div>
+	<div class="bottom_bar">
+		<ion-row>
+			<ion-col size="6">
+				<ion-button size="large" fill="outline" class="btn leaderboard" (click)="goToLeaderboard()">{{'leaderboard' | translate}}</ion-button>
+			</ion-col>
+			<ion-col size="6">
+				<ion-button size="large" class="btn" (click)="goTohome()">{{'back_to_home' | translate}}</ion-button>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-content>

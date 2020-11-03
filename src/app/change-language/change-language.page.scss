@@ -1,0 +1,34 @@
+ion-list {
+	background: var(--transparent) !important;
+	padding-top: 8px;
+
+	ion-item {
+		margin-bottom: 8px;
+		--background: var(--white) !important;
+		--padding-start: 0;
+		--inner-padding-end: 0px;
+		--inner-min-height: unset !important;
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 3px 4px -4px rgba(0, 0, 0, 0.5);
+		padding: 13px 17px 13px 17px;
+		background: var(--white) !important;
+
+		.item_inner {
+			width: 100%;
+			margin-top: 0;
+			margin-bottom: 0;
+
+			ion-radio {
+				--color-checked: var(--secondary);
+
+			}
+
+			h3 {
+				margin: 0;
+				font-size: 1.15rem;
+				font-weight: 600;
+			}
+		}
+	}
+}

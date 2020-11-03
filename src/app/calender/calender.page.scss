@@ -1,0 +1,222 @@
+.calender_container {
+	background: var(--white);
+	box-shadow: 0 3px 4px -4px rgba(0, 0, 0, 0.5);
+
+	.calender_header {
+		background: var(--primary);
+		color: var(--white);
+
+		.month {
+			width: fit-content;
+			margin: 0 auto;
+			padding-bottom: 13px;
+
+			h2 {
+				font-size: 1.15rem;
+				font-weight: 400;
+				margin: 0 auto;
+				min-width: 161px;
+
+			}
+
+			ion-icon {
+				font-size: 1.8rem;
+				min-width: 30px;
+			}
+		}
+
+	}
+
+	.day {
+		background: var(--bg-color);
+		padding: 0 12px;
+
+		h3 {
+			margin: 0;
+			min-width: 14.28%;
+			max-width: 14.28%;
+			font-size: .9rem;
+			font-weight: 600;
+			height: 43px;
+			line-height: 43px;
+		}
+	}
+
+	.date {
+		flex-wrap: wrap;
+		padding: 8px 8px;
+
+		h4 {
+			margin: 0;
+			min-width: 14.28%;
+			max-width: 14.28%;
+			font-size: 0.85rem;
+			font-weight: 400;
+			height: 43px;
+			line-height: 43px;
+			text-align: center;
+			color: var(--text-dark);
+			position: relative;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				width: 26px;
+				height: 26px;
+				border-radius: 50%;
+			}
+
+			span {
+				position: relative;
+				z-index: 999;
+			}
+
+			&.disable {
+				opacity: .2;
+			}
+
+			&.holiday {
+				color: var(--white);
+
+				&::before {
+					background: var(--red_color);
+
+				}
+			}
+
+			&.event {
+				color: var(--white);
+
+				&::before {
+					background: var(--event);
+
+				}
+			}
+
+			&.test {
+				color: var(--white);
+
+				&::before {
+					background: var(--secondary);
+
+				}
+			}
+		}
+	}
+
+}
+
+.calender_details {
+	padding: 15px 20px;
+	margin: 0 -6px;
+
+	h2 {
+		background: var(--white);
+		border: 1px solid #ccc;
+		border-radius: 50px;
+		display: flex;
+		align-items: center;
+		color: var(--text-dark);
+		font-size: .8rem;
+		font-weight: 500;
+		padding: 5px 7px;
+		min-width: 83px;
+		margin: 0 6px;
+
+		ion-icon {
+			font-size: .7rem;
+			min-width: 16px;
+		}
+
+		&.holiday {
+			ion-icon {
+				color: var(--red_color);
+			}
+
+		}
+
+		&.event {
+			ion-icon {
+				color: var(--event);
+			}
+		}
+
+		&.test {
+			ion-icon {
+				color: var(--secondary);
+			}
+		}
+
+	}
+}
+
+ion-list {
+	background: var(--transparent) !important;
+	padding: 0px;
+
+	ion-item {
+		margin-bottom: 8px;
+		--background: var(--white) !important;
+		--padding-start: 0;
+		--inner-padding-end: 0px;
+		--inner-min-height: unset !important;
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 3px 4px -4px rgba(0, 0, 0, 0.5);
+
+		.item_container {
+			padding: 17px 17px 20px 17px;
+			width: 100%;
+
+			h2 {
+				margin: 0;
+				color: var(--text-light);
+				font-size: 0.96rem;
+				margin-bottom: 8px;
+
+				span {
+					font-weight: 500;
+					color: var(--text-dark);
+				}
+			}
+
+			h3 {
+				margin: 0;
+				font-size: 1.15rem;
+				font-weight: 600;
+			}
+
+		}
+
+		&.holiday {
+			.item_container {
+				h2 {
+					color: var(--red_color);
+				}
+			}
+
+
+		}
+
+		&.event {
+			.item_container {
+				h2 {
+					color: var(--event);
+				}
+			}
+		}
+
+		&.test {
+			.item_container {
+				h2 {
+					color: var(--secondary);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,456 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'syllabus' | translate}}</ion-title>
+	</ion-toolbar>
+
+	<ion-segment [(ngModel)]="tab" lines="none" scrollable>
+		<ion-segment-button value="Maths">
+			<ion-label>
+				Maths
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Science">
+			<ion-label>
+				Science
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="English">
+			<ion-label>
+				English
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Sociology">
+			<ion-label>
+				Sociology
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="History">
+			<ion-label>
+				History
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Biology">
+			<ion-label>
+				Biology
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Chemistry">
+			<ion-label>
+				Chemistry
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="Physics">
+			<ion-label>
+				Physics
+			</ion-label>
+		</ion-segment-button>
+	</ion-segment>
+
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'Maths'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Science'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Science</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Science</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+		<ion-list lines="none" *ngSwitchCase="'English'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to English</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Sociology'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Sociology</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'History'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to History</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Biology'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Biology</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Chemistry'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Chemistry</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+
+
+
+		<ion-list lines="none" *ngSwitchCase="'Physics'">
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Physics</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 2 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Fraction & decimals</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 3 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Algebraic Expression</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 4 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>The triangle & properties</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 5<span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Perimeter & Area</h3>
+				</div>
+			</ion-item>
+			<ion-item (click)="syllabus_topics()">
+				<div class="item_container">
+					<h2 class="d-flex">Week 1 <span class="end">08 Jun - 14 Jun</span></h2>
+					<h3>Introduction to Maths</h3>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>
