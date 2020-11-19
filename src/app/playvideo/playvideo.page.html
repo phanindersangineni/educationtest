@@ -37,7 +37,7 @@
 		</vg-controls>
 	
 		<video [vgMedia]="media" #media id="singleVideo" preload="auto" >
-		  <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4">
+		  <source [src]="videourl" type="video/mp4">
 		 <!-- <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt" srclang="en"
 			default>
 		  <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"

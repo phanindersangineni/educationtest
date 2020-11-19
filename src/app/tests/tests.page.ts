@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
+import { ExamService } from 'src/services/exam.service';
 @Component({
   selector: 'app-tests',
   templateUrl: './tests.page.html',
@@ -12,8 +13,24 @@ export class TestsPage implements OnInit {
   todaysexam: any = {};
   canstartexam = false;
   candownload = false;
+  question: any;
+  questioncounter = 0;
+  btnvar ="btn";
+  classvar = "d-flex previous_btn";
+  topics:any=[];
+  exam: any = {
+    duration: 0,
+    totalquestions: 0
+  };
+  timer: any;
+  questionchoices: any = [];
+  questionselected = 0;
+  allquestions :any= [];
+  defaulttopic ='';
+  noquestions =true;
   constructor(private route: Router,
-    private storage: Storage) {
+    private storage: Storage,
+    private examService: ExamService) {
     this.storage.get('examdata').then((examdata) => {
       this.todaysexam = examdata;
     });
@@ -53,8 +70,18 @@ export class TestsPage implements OnInit {
   test_result() {
     this.route.navigate(['./test-result']);
   }
-  question() {
+  questions() {
 
     this.route.navigate(['./question']);
+  }
+
+  download() {
+    this.storage.remove('questiondata').then(() => {
+    this.examService.getQuestion('').subscribe(questiondata => {
+    this.storage.set('questiondata',questiondata);
+    this.route.navigate(['./question']);
+    });
+  });
+
   }
 }

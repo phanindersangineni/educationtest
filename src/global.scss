@@ -29,7 +29,20 @@
 	--event: #f49c12;
 }
 
-
+/* DOES NOT WORK - not specific enough */
+.modal-wrapper {
+	background: #222;
+  }
+  
+  .my-custom-class {
+    --backdrop-opacity: 0.2;
+    --background: linear-gradient(90deg, rgba(165, 255, 192, 1) 1%, rgba(0, 212, 255, 1) 100%);
+}
+  /* Works - pass "my-custom-class" in cssClass to increase specificity */
+  .my-custom-class .modal-wrapper {
+	background: #222;
+  }
+  
 .bg_color {
 	--background: var(--bg-color);
 }
@@ -348,11 +361,7 @@ ion-header {
 .alert-wrapper {
 	--background: var(--bg-color);
 
-	.alert-head {
-		h2 {
-			color: var(--white);
-		}
-	}
+	
 
 	.alert-radio-group {
 		.alert-radio-label {

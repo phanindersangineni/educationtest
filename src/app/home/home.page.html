@@ -28,7 +28,7 @@
 			<h2>Todays Exam</h2>
 			<h3>{{todaysexam.exam}}</h3>
 			<h4 class="d-flex"> {{todaysexam.examtime}} {{todaysexam.span}} 
-				<span class="end">View</span></h4>
+				<span class="end" (click)="tests()">View</span></h4>
 		</div>
 
 		<div class="menu_container">
@@ -77,10 +77,10 @@
 					</div>
 				</ion-col>
 				<ion-col size="6">
-					<div class="menu d-flex" (click)="faculties()">
-						<h2>{{'faculities' | translate}}</h2>
+					<div class="menu d-flex" (click)="subjectiveexam()">
+						<h2>Subjective Exam</h2>
 						<div class="menu_img end">
-							<img src="assets/images/ic_faculties.png">
+							<img src="assets/images/ic_tests.png">
 						</div>
 					</div>
 				</ion-col>

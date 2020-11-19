@@ -1,0 +1,25 @@
+{
+    "tests":[
+        {
+       "day":12,
+        "exam" :"Neet Medical Exam",
+        "description" :"neet medical practice exam",
+        "date":"12/12/2020"
+        },
+        {
+            "day":18,
+             "exam" :"Weekly Test",
+             "description" :"Weekly science test",
+             "date":"12/12/2020"
+        }
+  ],
+  "holidays":[
+    {
+    "day":1,
+    "exam" :"National Holiday",
+    "date":"01/01/2020"
+    }
+   
+]
+ 
+}

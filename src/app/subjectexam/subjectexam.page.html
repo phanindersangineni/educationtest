@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" (click)="gohome()" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Subjective Exam Schedule</ion-title>
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'Maths'">
+			<ion-item  *ngFor =" let data of examschedule">
+				<div class="item_container">
+					<h3 class="d-flex">{{data.subjectName}} <span class="end">{{data.examDate}}</span></h3>
+					<br>
+					<h2 class="d-flex">{{data.examTime}} <span class="end">
+					  {{data.duration}} mins
+				   </span></h2>
+				   <h2 class="d-flex">{{data.examName}} 
+				 </h2><br>
+					<ion-button size="small" *ngIf ="data.completed ==0" type="submit"
+						class="btn" (click)="openModal(data)">Take Exam</ion-button>
+
+						<ion-button size="small" *ngIf ="data.completed ==1" type="submit"
+						class="btn" (click)="openModal(data)">In progress</ion-button>
+						
+						<ion-button size="small" *ngIf ="data.completed ==2 ||data.completed ==3" type="submit" disabled
+			            class="btn">Completed</ion-button>
+					
+				</div>
+			</ion-item>
+
+			
+			
+		</ion-list>
+
+	
+
+	</div>
+</ion-content>

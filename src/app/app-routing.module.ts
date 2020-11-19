@@ -38,6 +38,14 @@ const routes: Routes = [
     loadChildren: () => import('./syllabus/syllabus.module').then( m => m.SyllabusPageModule)
   },
   {
+    path: 'subjectexam',
+    loadChildren: () => import('./subjectexam/subjectexam.module').then( m => m.SubjectexamPageModule)
+  },
+  {
+    path: 'examstart',
+    loadChildren: () => import('./examstart/examstart.module').then( m => m.ExamstartPageModule)
+  },
+  {
     path: 'syllabus-topics',
     loadChildren: () => import('./syllabus-topics/syllabus-topics.module').then( m => m.SyllabusTopicsPageModule)
   },
@@ -57,6 +65,18 @@ const routes: Routes = [
     path: 'test-result',
     loadChildren: () => import('./test-result/test-result.module').then( m => m.TestResultPageModule)
   },
+
+  {
+    path: 'uploads',
+    loadChildren: () => import('./uploads/uploads.module').then( m => m.UploadsPageModule)
+  },
+
+  {
+    path: 'imageview',
+    loadChildren: () => import('./imageview/imageview.module').then( m => m.ImageViewPageModule)
+  },
+  
+  
   {
     path: 'insight',
     loadChildren: () => import('./insight/insight.module').then( m => m.InsightPageModule)

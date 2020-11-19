@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 
 import { QuestionPageRoutingModule } from './question-routing.module';
 
 import { QuestionPage } from './question.page';
+import { SafePipe } from 'src/services/SafePipe';
 
 @NgModule({
   imports: [
@@ -14,8 +15,12 @@ import { QuestionPage } from './question.page';
     FormsModule,
     IonicModule,
 	TranslateModule,
-    QuestionPageRoutingModule
+    QuestionPageRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [QuestionPage]
+  declarations: [QuestionPage,SafePipe],
+  exports: [
+    SafePipe
+  ],
 })
 export class QuestionPageModule {}

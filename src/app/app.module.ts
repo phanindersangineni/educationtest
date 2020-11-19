@@ -18,18 +18,33 @@ import { LoaderService } from 'src/services/LoaderService';
 import { ExamService } from 'src/services/exam.service';
 import { ToastService } from 'src/services/toastr.service';
 
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Base64 } from '@ionic-native/base64';
+import { AutosubmitEventService } from 'src/services/autosubmitevent.service';
+import { CountdownEventService } from 'src/services/countdownevent.service';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { Network } from '@ionic-native/network/ngx'
+
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
+/*{
+  name: '_myDb',
+  driverOrder: ['localstorage']
+}*/
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '_myDb',
+      driverOrder: ['localstorage']
+    }),
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -40,16 +55,23 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
+ 
   providers: [
     StatusBar,
     SplashScreen,
     LoginService,
     { provide: APP_CONFIG, useValue: BaseAppConfig },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     VideoService,
     LoaderService,
     ExamService,
-    ToastService
+    ToastService,
+    ImagePicker,
+    AutosubmitEventService,
+    CountdownEventService,
+    Camera,
+    FilePath,
+    Network
   ],
   bootstrap: [AppComponent]
 })

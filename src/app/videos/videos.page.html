@@ -7,9 +7,10 @@
 	</ion-toolbar>
 
 	<ion-segment [(ngModel)]="tab" lines="none" scrollable>
-		<ion-segment-button value="all">
+		
+		<ion-segment-button value="online">
 			<ion-label>
-				All
+				Online Videos
 			</ion-label>
 		</ion-segment-button>
 		<ion-segment-button value="offline">
@@ -17,92 +18,22 @@
 				Offline Videos
 			</ion-label>
 		</ion-segment-button>
-		<ion-segment-button value="online">
-			<ion-label>
-				Online Videos
-			</ion-label>
-		</ion-segment-button>
+	
 		
 	</ion-segment>
 </ion-header>
 
 <ion-content class="bg_color">
 	<div class="tab_container" [ngSwitch]="tab">
-		<ion-list lines="none" *ngSwitchCase="'all'">
-			<ion-item >
-				<div class="item_container">
-					<div class="faculitie_details d-flex">
-						<div class="text_box">
-							<h3>By Lecturer Name</h3>
-							<p> 
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							</p>
-						</div>
-						<div class="img_box end center_img" (click) ="getPermission()">
-							<img src="assets/images/download.png" class="crop_img">
-						</div>
-					</div>
-
-					<ion-row>
-						<ion-col size="7">
-							<p>Maths, Science, Social Science </p>
-						</ion-col>
-						<ion-col size="5" class="ion-text-end">
-							
-							<div class="message" (click)="playRemoteVideo()">
-								<ion-icon class="zmdi zmdi-email"></ion-icon>
-								&nbsp;
-								Play Video
-							</div>
-						</ion-col>
-					</ion-row>
-				</div>
-			</ion-item>
-
-			<ion-item (click)="playLocalVideo()">
-				<div class="item_container">
-					<div class="faculitie_details d-flex">
-						<div class="text_box">
-							<h3>By Lecturer Name</h3>
-							<p> 
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							</p>
-						</div>
-						<div class="img_box end center_img">
-							<img src="assets/images/4.png" class="crop_img">
-						</div>
-					</div>
-
-					<ion-row>
-						<ion-col size="7">
-							<p>Maths, Science, Social Science </p>
-						</ion-col>
-						<ion-col size="5" class="ion-text-end">
-							<div class="message">
-								<ion-icon class="zmdi zmdi-email"></ion-icon>
-								&nbsp;
-								Play Offline Video
-							</div>
-						</ion-col>
-					</ion-row>
-				</div>
-			</ion-item>
-
-
-
-			
-		</ion-list>
-
-
-
+		
 		<ion-list lines="none" *ngSwitchCase="'offline'">
-			<ion-item (click)="playLocalVideo()">
+			<ion-item  *ngFor =" let localvideo  of localvideoarray">
 				<div class="item_container">
 					<div class="faculitie_details d-flex">
 						<div class="text_box">
-							<h3>George Smith</h3>
+							<h3>By {{localvideo.facultyName}}</h3>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								{{localvideo.description}}
 							</p>
 						</div>
 						<div class="img_box end center_img">
@@ -112,10 +43,10 @@
 
 					<ion-row>
 						<ion-col size="7">
-							<p>Science</p>
+							<p>{{localvideo.Subject}}/{{localvideo.topicName}}/{{localvideo.subtopicName}}</p>
 						</ion-col>
 						<ion-col size="5" class="ion-text-end">
-							<div class="message">
+							<div class="message" (click)="playLocalVideo(localvideo)">
 								<ion-icon class="zmdi zmdi-email"></ion-icon>
 								&nbsp;
 								Play Offline Video
@@ -129,26 +60,28 @@
 
 
 		<ion-list lines="none" *ngSwitchCase="'online'">
-			<ion-item (click)="playRemoteVideo()">
+			
+			<ion-item *ngFor =" let vidarry of videoarray">
 				<div class="item_container">
 					<div class="faculitie_details d-flex">
 						<div class="text_box">
-							<h3>Anand</h3>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							<h3>By {{vidarry.facultyName}}</h3>
+							<p> 
+								{{vidarry.description}}
 							</p>
 						</div>
-						<div class="img_box end center_img">
-							<img src="assets/images/3.png" class="crop_img">
+						<div class="img_box end center_img" (click) ="getPermission(vidarry)">
+							<img src="assets/images/download.png" class="crop_img">
 						</div>
 					</div>
 
 					<ion-row>
 						<ion-col size="7">
-							<p>Science</p>
+							<p>{{vidarry.Subject}}/{{vidarry.topicName}}/{{vidarry.subtopicName}} </p>
 						</ion-col>
 						<ion-col size="5" class="ion-text-end">
-							<div class="message">
+							
+							<div class="message" (click)="playRemoteVideo(vidarry)">
 								<ion-icon class="zmdi zmdi-email"></ion-icon>
 								&nbsp;
 								Play Video
@@ -162,6 +95,5 @@
 
 
 	</div>
-	<ion-button size="large" type="submit"  (click) ="closeVideo()" 
-			class="btn" (click)="goTohome()">Stop Video</ion-button>
+	
 </ion-content>

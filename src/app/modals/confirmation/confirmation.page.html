@@ -1,0 +1,39 @@
+
+	<ion-toolbar>
+		
+		<ion-title (click) ="closeModal('close')">Close</ion-title>
+	</ion-toolbar>
+
+
+<ion-content class="bg_color">
+	<div class="tab_container" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'Maths'">
+			<ion-item >
+				<div class="item_container">
+					<h3 class="d-flex">Important Information </h3>
+					<br>
+					<h2 class="d-flex">You can upload multiple answer sheets
+				   </h2><br>
+				   <h2 class="d-flex">Any time you can change your answer
+				</h2><br>
+				<h2 class="d-flex">After submission you cannot change any thing
+				</h2><br>
+				<h2 class="d-flex">Your total time is {{duration}} min and total marks is {{totalmarks}}
+				</h2><br>
+				<h2 class="d-flex">Dont upload any irrelevant image
+				</h2><br>
+				<h3 class="d-flex">Good luck student </h3>
+				<br>
+					<ion-button size="small" type="submit"
+			            class="btn" (click) ="closeModal('start')">Start</ion-button>
+					
+				</div>
+			</ion-item>
+
+			
+			
+		</ion-list>
+
+
+	</div>
+</ion-content>

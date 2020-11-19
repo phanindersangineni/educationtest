@@ -1,0 +1,25 @@
+[
+    {
+     "subExamId":1,
+     "examName":"MATHS_Mock_Test",
+     "subjectId":1,
+     "subjectName":"MATHEMATICS",
+     "examType":0,
+     "examDate":"11-11-2020",
+     "examTime":"10:00 to 13:00",
+     "duration":2,
+     "totalMarks":100,
+     "completed":1
+     },
+     {
+     "subExamId":2,
+     "examName":"MATHS_Mock_Test2",
+     "subjectId":1,
+     "subjectName":"MATHEMATICS",
+     "examType":0,
+     "examDate":"09-11-2020",
+     "examTime":"10:00 to 13:00",
+     "duration":180,
+     "completed":2
+     }
+ ]

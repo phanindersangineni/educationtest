@@ -1,0 +1,57 @@
+<ion-header class="bg_transparent">
+	
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+
+	<!--	<h2 class="ion-text-center">{{'faculities' | translate}}</h2>-->
+	<div class="banner">
+		<h2 class="ion-text-center">Maths Test</h2>
+		<div class="rank_box">
+			<h3 class="ion-text-center">Time Remaining#</h3>
+			<h1 class="ion-text-center">{{currentduration}}</h1>
+		</div>
+
+	</div>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+	<div class="container">
+		<div class="result d-flex correct_answers" *ngFor =" let img of  imagearrays;index as i">
+			<h2 (click) ="viewImage(img)"><u>Sheet{{i+1}}.jpg</u></h2>
+			<h3 class="end">
+				<span (click)="removefromarray(i)">Remove</span>
+				<ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+			</h3>
+		</div>
+	
+	</div>
+    <div class="container" *ngIf ="imagearrays.length ==0">
+		<div class="result d-flex correct_answers">
+			<h2>Please upload your answer sheet</h2>
+			
+		</div>
+	
+	</div>
+
+	<div class="bottom_bar">
+		<input type="file" (change)="fileChangeEvent($event)">
+
+			<ion-row>
+			<ion-col size="5">
+				<ion-button size="large" fill="outline" (click)="goback()" class="btn leaderboard" >Back</ion-button>
+			</ion-col>
+
+			<ion-col size="6">
+				<ion-button size="large"  (click)="presentActionSheet()" class="btn" >Camera</ion-button>
+			</ion-col>
+
+			<ion-col size="11">
+				<ion-button size="large"  (click)="getImages()" class="btn" >Gallery</ion-button>
+			</ion-col>
+			
+		</ion-row>
+	</div>
+</ion-content>

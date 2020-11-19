@@ -36,6 +36,7 @@ username ='';
     this.storage.get('examdata').then((examdata) => {
      this.todaysexam  =examdata;
      console.log(this.todaysexam);
+     //alert("hhhh");
     });
     
    }
@@ -69,6 +70,9 @@ username ='';
   }
   faculties() {
     this.route.navigate(['./faculties']);
+  }
+  subjectiveexam() {
+    this.route.navigate(['./subjectexam']);
   }
   support() {
     this.route.navigate(['./support']);

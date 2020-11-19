@@ -48,9 +48,10 @@ export class SingInPage implements OnInit {
     console.log("Eeee");
     
 
-      /*this.loginService.login(url).subscribe(result => {
+      this.loginService.login(url).subscribe(result => {
         if(result =='SUCCESS'){
           this.storage.set('username',username);
+          this.storage.set('studentid',username);
           this.examService.getexam(url).subscribe(examdata => {
           this.storage.set('examdata',examdata);
           this.navCtrl.navigateRoot(['./home']);
@@ -59,13 +60,14 @@ export class SingInPage implements OnInit {
        this.toastService.showToast(result);
         
         }
-      });*/
+      });
 
-      this.storage.set('username',username);
+     /* this.storage.set('username',username);
+      this.storage.set('studentid',username);
       this.examService.getexam(url).subscribe(examdata => {
       this.storage.set('examdata',examdata);
       this.navCtrl.navigateRoot(['./home']);
-      });
+      });*/
 
       
   } 

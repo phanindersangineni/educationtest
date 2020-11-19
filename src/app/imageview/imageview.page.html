@@ -1,0 +1,25 @@
+<ion-header class="bg_transparent">
+	<!--
+	<ion-toolbar>
+		<ion-title>test-result</ion-title>
+	</ion-toolbar>
+-->
+	<!--	<h2 class="ion-text-center">{{'faculities' | translate}}</h2>-->
+	<div class="banner">
+		<h2 class="ion-text-center">View Uploaded Sheet</h2>
+		</div>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+	<div class="container">
+		<img [src]="displayImage">
+	</div>
+	<div class="bottom_bar">
+		<ion-row>
+			<ion-col size="12">
+				<ion-button size="large" fill="outline" (click)="goback()" class="btn leaderboard" >Back</ion-button>
+			</ion-col>
+			
+		</ion-row>
+	</div>
+</ion-content>

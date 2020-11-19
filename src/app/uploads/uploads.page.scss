@@ -1,0 +1,411 @@
+ion-header {
+	background: url('/assets/images/header_bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+
+
+	.banner {
+		padding-top: 22px;
+
+		h2 {
+			background: rgba(0, 0, 0, 0.17);
+			border-radius: 50px;
+			color: var(--yelow_color);
+			width: fit-content;
+			margin: 0 auto;
+			font-size: 1.1rem;
+			height: 45px;
+			line-height: 45px;
+			padding: 0 26px;
+			font-weight: 400;
+			margin-bottom: 7px;
+
+		}
+
+		.rank_box {
+			position: relative;
+			padding-top: 12px;
+			margin-bottom: 9px;
+			margin-top: 20px;
+			width: 120px;
+			height: 120px;
+			margin: 0 auto;
+			margin-bottom: 15px;
+
+			h3 {
+				margin: 0;
+				position: absolute;
+				top: 9px;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				background: var(--secondary);
+				color: var(--white);
+				z-index: 99;
+				font-size: .93rem;
+				font-weight: 400;
+				width: fit-content;
+				border-radius: 50px;
+				min-width: 80px;
+				height: 25px;
+				line-height: 25px;
+			}
+
+			h1 {
+				margin: 0;
+				text-align: center;
+				color: var(--white);
+				position: absolute;
+				top: 15px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				line-height: 100px;
+				font-size: 4.5rem;
+				font-weight: 500;
+				text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+
+			}
+
+			&::after,
+			&::before {
+				content: '';
+				position: absolute;
+				top: 11px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				width: 95px;
+				height: 95px;
+				background: var(--white);
+				opacity: .2;
+				border-radius: 50%;
+			}
+
+			&::after {
+				opacity: .1;
+				width: 115px;
+				height: 115px;
+			}
+		}
+	}
+
+	h4 {
+		margin: 0;
+		color: var(--white);
+		font-size: 1.1rem;
+		font-weight: 500;
+	}
+}
+
+.container {
+	padding: 20px;
+	padding-bottom: 7px;
+
+	.result {
+		background: var(--white);
+		border: 1px solid #e0e0e0;
+		margin-bottom: 10px;
+		padding: 12px 17px;
+
+		h2 {
+			margin: 0;
+			font-size: 1rem;
+		}
+
+		h3 {
+			display: flex;
+			align-content: center;
+			margin-top: 0;
+			margin-bottom: 0;
+			position: relative;
+			top: 2px;
+
+			strong {
+				font-size: 1.15rem;
+				display: block;
+				position: relative;
+				top: 2px;
+			}
+
+			span {
+				display: block;
+				font-size: 0.85rem;
+				font-weight: 400;
+				margin: 0 7px;
+				position: relative;
+				top: 6px;
+			}
+
+			ion-icon {
+				color: var(--text-light);
+				font-size: 1.7rem;
+				min-width: 15px;
+				max-width: 15px;
+				opacity: .4;
+			}
+		}
+
+		&.correct_answers {
+			h3 {
+				color: var(--secondary);
+			}
+		}
+
+		&.wrong_answers {
+			h3 {
+				color: var(--red_color);
+			}
+		}
+
+		&.skipped_answers {
+			h3 {
+				color: var(--yelow_color);
+			}
+		}
+
+	}
+}
+
+.bottom_bar {
+	padding: 0 20px;
+padding-bottom: 0;
+	ion-row {
+		margin: 0 -5px;
+
+		ion-col {
+			.button.btn {
+				&.button-outline {
+					--border-color: #b9b9b9 !important;
+				}
+
+				&.leaderboard {
+					--background: #e4e4e4 !important;
+					color: var(--text-dark) !important;
+					font-weight: 500 !important;
+				}
+			}
+		}
+	}
+}
+
+
+
+/* RESET STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.chart-skills {
+	margin: 0 auto;
+	padding: 0;
+	list-style-type: none;
+}
+
+.chart-skills *,
+.chart-skills::before {
+	box-sizing: border-box;
+}
+
+
+/* CHART-SKILLS STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.chart-skills {
+	position: relative;
+	margin-top: 12px;
+	width: 194px;
+	height: 97px;
+	overflow: hidden;
+
+	.text {
+		overflow: hidden;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		bottom: 0;
+		display: flex;
+		align-self: center;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 18px;
+			right: 0;
+			bottom: 0;
+			width: 95%;
+			height: 85%;
+			background: var(--bg-color);
+			border-radius: 88px 88px 0 0px;
+
+		}
+	}
+
+	h4 {
+		color: #000;
+		text-align: center;
+		position: relative;
+		top: 20px;
+		z-index: 99;
+		font-size: 2.7rem;
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+		width: fit-content;
+		margin: 0 auto;
+
+		span {
+			display: block;
+
+			small {
+				display: block;
+				font-size: 1.2rem;
+				line-height: 19px;
+				width: fit-content;
+			}
+
+			strong {
+				display: block;
+				font-size: .8rem;
+				line-height: 19px;
+				width: fit-content;
+				font-weight: 400;
+			}
+		}
+	}
+}
+
+.chart-skills::before,
+.chart-skills::after {
+	position: absolute;
+}
+
+.chart-skills::before {
+	content: '';
+	width: inherit;
+	height: inherit;
+	border: 17px solid var(--bg-color);
+	border-bottom: none;
+	border-top-left-radius: 175px;
+	border-top-right-radius: 175px;
+}
+
+
+
+.chart-skills .barprogress_bar {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 17px solid;
+	border-top: none;
+	border-bottom-left-radius: 175px;
+	border-bottom-right-radius: 175px;
+	transform-origin: 50% 0;
+	animation-fill-mode: forwards;
+	animation-duration: .4s;
+	animation-timing-function: linear;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+
+}
+
+.chart-skills .barprogress_bar.correct_answers {
+	z-index: 4;
+	border-color: var(--secondary);
+	animation-name: rotate-one;
+	transform: rotate(100.6deg);
+}
+
+.chart-skills .barprogress_bar.wrong_answers {
+	z-index: 3;
+	border-color: var(--yelow_color);
+	animation-name: rotate-two;
+	animation-delay: .4s;
+	transform: rotate(150.6deg);
+}
+
+.chart-skills .barprogress_bar.skipped_answers {
+	z-index: 2;
+	border-color: var(--red_color);
+	animation-name: rotate-three;
+	animation-delay: .8s;
+	transform: rotate(200.6deg);
+}
+
+
+
+/* ANIMATIONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+//@keyframes rotate-one {
+//	100% {
+//		transform: rotate(50.6deg);
+//		/**
+//     * 12% => 21.6deg
+//     */
+//	}
+//}
+//
+//@keyframes rotate-two {
+//	0% {
+//		transform: rotate(21.0deg);
+//	}
+//
+//	100% {
+//		transform: rotate(57.0deg);
+//		/**
+//     * 32% => 57.6deg 
+//     * 57.6 + 21.6 => 79.2deg
+//     */
+//	}
+//}
+//
+//@keyframes rotate-three {
+//	0% {
+//		transform: rotate(57.0deg);
+//	}
+//
+//	100% {
+//		transform: rotate(79.0deg);
+//		/**
+//     * 34% => 61.2deg 
+//     * 61.2 + 79.2 => 140.4deg
+//     */
+//	}
+//}
+
+
+.chart_skills {
+	width: 194px;
+	height: 97px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	background: var(--bg-color);
+
+	.barprogress_bar {
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		border: 17px solid;
+		border-top-left-radius: 175px;
+		border-top-right-radius: 175px;
+		border-bottom: 0;
+		position: relative;
+		overflow: hidden;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: red;
+			z-index: 99;
+		}
+	}
+}

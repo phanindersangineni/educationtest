@@ -1,0 +1,62 @@
+[
+	{
+		"subExamSecId":1,
+		"sectionName":"SECTION I",
+		"description":"ANSWER ANY TWO",
+		"qNoFrom":1,
+		"qNoTo":4,
+		"totalQns":4,
+		"qnsToBeAttempt":2,
+		"maxMarks":20,
+		"sectionQuestions":[
+			{
+				"subExamQnId":1,
+				"questionId":7,
+				"question":"If f:R -> R is defined as f(x)=2x+|x| then f(3x)-f(-x)-4x=",
+				"maxMarks":10
+			},
+			{
+				"subExamQnId":2,
+				"questionId":8,
+				"question":"If f:R -> R is defined as f(x)=2x+|x| then f(3x)-f(-x)-4x=",
+				"maxMarks":10
+			},
+			{
+				"subExamQnId":3,
+				"questionId":9,
+				"question":"If f:R -> R is defined as f(x)=2x+|x| then f(3x)-f(-x)-4x=",
+				"maxMarks":10
+			},
+			{
+				"subExamQnId":4,
+				"questionId":11,
+				"question":"If f:R -> R is defined as f(x)=2x+|x| then f(3x)-f(-x)-4x=",
+				"maxMarks":10
+			}
+		]
+	},
+	{
+		"subExamSecId":2,
+		"sectionName":"SECTION II",
+		"description":"ANSWER ANY ONE",
+		"qNoFrom":5,
+		"qNoTo":6,
+		"totalQns":2,
+		"qnsToBeAttempt":1,
+		"maxMarks":20,
+		"sectionQuestions":[
+			{
+				"subExamQnId":5,
+				"questionId":13,
+				"question":"If f:R -> R is defined as f(x)=2x+|x| then f(3x)-f(-x)-4x=",
+				"maxMarks":20
+			},
+			{
+				"subExamQnId":6,
+				"questionId":16,
+				"question":"If f:R -> R is defined as f(x)=2x+|x| then f(3x)-f(-x)-4x=",
+				"maxMarks":20
+			}
+		]
+	}
+]
