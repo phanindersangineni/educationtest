@@ -117,14 +117,20 @@ export class ExamstartPage implements OnInit {
       console.log(a++);
       console.log(b);
       if (a == b) {
+        this.currentduration  =0;
+        this.storage.ready().then(() => {
+          this.storage.set('currentduration', this.currentduration);
+        });
         clearInterval(interval);
         this.confirmforautosubmit();
-      }
+
+      }else{
       this.currentduration = parseInt(this.currentduration) - 1;
       this.countdownEventService.publishCountdown(this.currentduration);
       this.storage.ready().then(() => {
         this.storage.set('currentduration', this.currentduration);
       });
+    }
 
     }, 10000);
 
@@ -152,10 +158,15 @@ export class ExamstartPage implements OnInit {
   }
 
   getexamquestions() {
-    this.examService.getexamquestions('').subscribe(examdata => {
+    /*this.examService.getexamquestions('').subscribe(examdata => {
+      this.examquestions = examdata;
+    });*/
+    const examdata:any ={
+      subExamId :this.videoService.getExamId
+    }
+    this.examService.post(examdata,'/subjectiveExam/questions').subscribe(examdata => {
       this.examquestions = examdata;
     });
-
 
   }
 
@@ -341,19 +352,24 @@ export class ExamstartPage implements OnInit {
         this.loaderService.showLoader();
         this.examService.post(finalsubmit, '/subjectiveExam/saveExam').subscribe(result => {
           console.log(result);
-          this.currentduration = 0;
+        
           this.loaderService.hideLoader();
           this.toastService.showToast('Your exam details has been captured and it is under evaluation');
           this.storage.remove('studentanswerdata').then(() => {
             this.storage.remove('currentduration').then(() => {
               this.storage.remove('startime').then(() => {
+                this.currentduration = 0;
                 this.route.navigate(['./subjectexam']);
               });
             });
 
           });
 
-        });
+        },error => {
+          // this.errors = error
+          this.toastService.showToast('Error while saving your answer please try after sometime');
+          this.loaderService.hideLoader();
+       });
       });
 
     });
@@ -377,7 +393,7 @@ export class ExamstartPage implements OnInit {
           text: 'CONFIRM',
           handler: () => {
             console.log('Confirm Okay');
-            this.toastService.showToast(this.networkService.getCurrentNetworkStatus());
+            //this.toastService.showToast(this.networkService.getCurrentNetworkStatus());
             this.storage.ready().then(() => {
               this.storage.get('studentanswerdata').then((studentanswerdata) => {
                 console.log(studentanswerdata);
@@ -404,11 +420,11 @@ export class ExamstartPage implements OnInit {
                   this.loaderService.hideLoader();
                   this.toastService.showToast('Your exam details has been captured and it is under evaluation');
                   this.storage.ready().then(() => {
-                    this.currentduration = 0;
                     this.storage.remove('studentanswerdata');
                     this.storage.remove('studentanswerdata').then(() => {
                       this.storage.remove('currentduration').then(() => {
                         this.storage.remove('startime').then(() => {
+                          this.currentduration = 0;
                           this.route.navigate(['./subjectexam']);
                         });
                       });
@@ -416,7 +432,11 @@ export class ExamstartPage implements OnInit {
                     });
                   });
 
-                });
+                }, error => {
+                  // this.errors = error
+                  this.toastService.showToast('Error while saving your answer please try after sometime');
+                  this.loaderService.hideLoader();
+               });
 
 
 

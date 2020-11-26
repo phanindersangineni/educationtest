@@ -34,10 +34,18 @@
 							<br>
 
 							<div class="bottom_bar">
-								<ion-row>
+								<ion-row *ngIf ="currentduration !=0"> 
 									
 									<ion-col size="10">
 										<ion-button size="large" class="btn" (click)="gotouploads(examques,ques)">
+											Start Upload</ion-button>
+									</ion-col>
+								</ion-row>
+
+								<ion-row *ngIf ="currentduration ==0"> 
+									
+									<ion-col size="10">
+										<ion-button size="large" class="btn" disabled>
 											Start Upload</ion-button>
 									</ion-col>
 								</ion-row>

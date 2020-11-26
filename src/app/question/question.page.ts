@@ -214,7 +214,7 @@ export class QuestionPage implements OnInit {
 
 
 
-    }, 1000);
+    }, 60000);
 
 
   }

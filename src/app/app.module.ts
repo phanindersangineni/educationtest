@@ -25,7 +25,7 @@ import { CountdownEventService } from 'src/services/countdownevent.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Network } from '@ionic-native/network/ngx'
-
+import { HTTP } from '@ionic-native/http/ngx';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -71,7 +71,8 @@ export function createTranslateLoader(http: HttpClient) {
     CountdownEventService,
     Camera,
     FilePath,
-    Network
+    Network,
+    HTTP,
   ],
   bootstrap: [AppComponent]
 })

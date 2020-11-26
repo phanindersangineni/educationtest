@@ -6,6 +6,7 @@ import { TranslateService } from '../../node_modules/@ngx-translate/core';
 import { APP_CONFIG, AppConfig } from './app.config';
 import { MyEvent } from 'src/services/myevent.services';
 import { Constants } from 'src/models/contants.models';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,21 @@ export class AppComponent {
     private platform: Platform, private navCtrl: NavController,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private translate: TranslateService, private myEvent: MyEvent) {
+    private translate: TranslateService, private myEvent: MyEvent,
+    private storage: Storage) {
     this.initializeApp();
     this.myEvent.getLanguageObservable().subscribe(value => {
-      this.navCtrl.navigateRoot(['./']);
-      this.globalize(value);
+      this.storage.ready().then(() => {
+        this.storage.get('studentid').then((studentid) => {
+          if (studentid == null) {
+            this.navCtrl.navigateRoot(['./']);
+            this.globalize(value);
+          } else {
+            this.navCtrl.navigateRoot(['./home']);
+            this.globalize(value);
+          }
+        });
+      });
     });
   }
 

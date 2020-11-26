@@ -8,6 +8,8 @@ import { ToastService } from 'src/services/toastr.service';
 import { VideoService } from 'src/services/video.service';
 import { ConfirmationPage } from '../modals/confirmation/confirmation.page';
 
+import { HTTP } from '@ionic-native/http/ngx';
+
 @Component({
   selector: 'app-subjectexam',
   templateUrl: './subjectexam.page.html',
@@ -33,8 +35,7 @@ export class SubjectexamPage implements OnInit {
   ngOnInit() {
     this.storage.remove('currentduration');
   }
-  ionViewWillEnter() {
-    //alert("!23");
+  ionViewDidEnter() {
     this.getschedule();
   }
   
@@ -42,11 +43,16 @@ export class SubjectexamPage implements OnInit {
     const admindata: any = {
       studentId: this.studentid
     }
-
+    //alert(this.studentid);
     this.examService.post(admindata,'/subjectiveExam/schedules').subscribe(examdata => {
-      console.log(examdata);
-      this.examschedule = examdata;
-    });
+       this.examschedule = examdata;
+    }, error => {
+     // this.errors = error
+      alert(error);
+  });
+
+  //let response =this.examService.post1(admindata,'/subjectiveExam/schedules');
+  //console.log(response);
     
     /*this.storage.get('currentduration').then((currentduration) => {
      // alert('he');

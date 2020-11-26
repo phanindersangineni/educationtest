@@ -78,7 +78,9 @@ username ='';
     this.route.navigate(['./support']);
   }
   logout() {
+    this.storage.remove('studentid').then(() => {
     this.route.navigate(['./sing-in']);
+    });
   }
   faculties_message() {
     this.route.navigate(['./faculties-messages-list']);
