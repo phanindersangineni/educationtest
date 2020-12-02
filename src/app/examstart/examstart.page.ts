@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
 import { ExamService } from 'src/services/exam.service';
@@ -12,6 +12,7 @@ import { AutosubmitEventService } from 'src/services/autosubmitevent.service';
 import { CountdownEventService } from 'src/services/countdownevent.service';
 import { LoaderService } from 'src/services/LoaderService';
 import { NetworkService } from 'src/services/network.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-examstart',
   templateUrl: './examstart.page.html',
@@ -44,6 +45,7 @@ export class ExamstartPage implements OnInit {
   newques: any = {};
   studentid: any = 0;
   submissionstarted: any = false;
+  subscription: Subscription;
   constructor(private route: Router,
     private storage: Storage,
     public alertController: AlertController,
@@ -55,12 +57,11 @@ export class ExamstartPage implements OnInit {
     public autosubmitevent: AutosubmitEventService,
     public countdownEventService: CountdownEventService,
     public loaderService: LoaderService,
-    public networkService:NetworkService
+    public networkService: NetworkService,
+    private platform: Platform
   ) {
 
-    this.autosubmitevent.getObservable().subscribe((data) => {
-      this.finalSubmit(2);
-    });
+
 
     this.examname = this.videoService.getexamName;
     this.storage.ready().then(() => {
@@ -95,15 +96,35 @@ export class ExamstartPage implements OnInit {
       })
 
       this.storage.get('currentduration').then((currentduration) => {
-        this.currentduration = currentduration;
+        console.log(this.videoService.getexamHr);
+        console.log(currentduration);
+        if (currentduration == null || currentduration == undefined) {
+          this.currentduration = this.videoService.getexamHr;
+          this.storage.set('currentduration', this.videoService.getexamHr);
+        } else {
+          this.currentduration = currentduration;
+        }
         console.log(this.currentduration);
-        this.startcountdown();
+        if (parseInt(this.currentduration) != 0) {
+          this.startcountdown();
+        }
       })
+      //alert("123123");
     });
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribeWithPriority(9999, () => {
+      // do nothing
+    });
+  }
 
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
+  }
+
+  ngOnInit() {
+    // alert("hi");
     this.getexamquestions();
     //clearInterval(this.interval);
     // document.getElementById("question").innerHTML = "hhi";
@@ -117,22 +138,24 @@ export class ExamstartPage implements OnInit {
       console.log(a++);
       console.log(b);
       if (a == b) {
-        this.currentduration  =0;
+        this.currentduration = 0;
         this.storage.ready().then(() => {
           this.storage.set('currentduration', this.currentduration);
         });
         clearInterval(interval);
+        this.autosubmitevent.publish('');
         this.confirmforautosubmit();
 
-      }else{
-      this.currentduration = parseInt(this.currentduration) - 1;
-      this.countdownEventService.publishCountdown(this.currentduration);
-      this.storage.ready().then(() => {
-        this.storage.set('currentduration', this.currentduration);
-      });
-    }
 
-    }, 10000);
+      } else {
+        this.currentduration = parseInt(this.currentduration) - 1;
+        this.countdownEventService.publishCountdown(this.currentduration);
+        this.storage.ready().then(() => {
+          this.storage.set('currentduration', this.currentduration);
+        });
+      }
+
+    }, 60000);
 
 
   }
@@ -150,7 +173,8 @@ export class ExamstartPage implements OnInit {
               this.autoSubmit(3);
             }
           }
-        ]
+        ],
+        backdropDismiss: false
       });
 
       await alert.present();
@@ -161,10 +185,10 @@ export class ExamstartPage implements OnInit {
     /*this.examService.getexamquestions('').subscribe(examdata => {
       this.examquestions = examdata;
     });*/
-    const examdata:any ={
-      subExamId :this.videoService.getExamId
+    const examdata: any = {
+      subExamId: this.videoService.getExamId
     }
-    this.examService.post(examdata,'/subjectiveExam/questions').subscribe(examdata => {
+    this.examService.post(examdata, '/subjectiveExam/questions').subscribe(examdata => {
       this.examquestions = examdata;
     });
 
@@ -326,7 +350,7 @@ export class ExamstartPage implements OnInit {
   }
 
   async autoSubmit(status) {
-     
+
     this.storage.ready().then(() => {
       this.storage.get('studentanswerdata').then((studentanswerdata) => {
         console.log(studentanswerdata);
@@ -352,7 +376,7 @@ export class ExamstartPage implements OnInit {
         this.loaderService.showLoader();
         this.examService.post(finalsubmit, '/subjectiveExam/saveExam').subscribe(result => {
           console.log(result);
-        
+
           this.loaderService.hideLoader();
           this.toastService.showToast('Your exam details has been captured and it is under evaluation');
           this.storage.remove('studentanswerdata').then(() => {
@@ -365,11 +389,11 @@ export class ExamstartPage implements OnInit {
 
           });
 
-        },error => {
+        }, error => {
           // this.errors = error
           this.toastService.showToast('Error while saving your answer please try after sometime');
           this.loaderService.hideLoader();
-       });
+        });
       });
 
     });
@@ -418,25 +442,29 @@ export class ExamstartPage implements OnInit {
                 this.loaderService.showLoader();
                 this.examService.post(finalsubmit, '/subjectiveExam/saveExam').subscribe(result => {
                   this.loaderService.hideLoader();
-                  this.toastService.showToast('Your exam details has been captured and it is under evaluation');
-                  this.storage.ready().then(() => {
-                    this.storage.remove('studentanswerdata');
-                    this.storage.remove('studentanswerdata').then(() => {
-                      this.storage.remove('currentduration').then(() => {
-                        this.storage.remove('startime').then(() => {
-                          this.currentduration = 0;
-                          this.route.navigate(['./subjectexam']);
+                  if (result.status == 'Success') {
+                    this.toastService.showToast('Your exam details has been captured and it is under evaluation');
+                    this.storage.ready().then(() => {
+                      this.storage.remove('studentanswerdata');
+                      this.storage.remove('studentanswerdata').then(() => {
+                        this.storage.remove('currentduration').then(() => {
+                          this.storage.remove('startime').then(() => {
+                            this.currentduration = 0;
+                            this.route.navigate(['./subjectexam']);
+                          });
                         });
-                      });
 
+                      });
                     });
-                  });
+                  } else {
+                    this.toastService.showToast('Error while saving your answer please try after sometime');
+                  }
 
                 }, error => {
                   // this.errors = error
                   this.toastService.showToast('Error while saving your answer please try after sometime');
                   this.loaderService.hideLoader();
-               });
+                });
 
 
 
@@ -446,7 +474,8 @@ export class ExamstartPage implements OnInit {
             });
           }
         }
-      ]
+      ],
+      backdropDismiss: false
     });
 
     await alert.present();

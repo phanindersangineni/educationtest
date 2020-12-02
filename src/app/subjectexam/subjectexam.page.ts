@@ -18,18 +18,19 @@ import { HTTP } from '@ionic-native/http/ngx';
 export class SubjectexamPage implements OnInit {
   tab: string = "Maths";
   examschedule: any = [];
+  ispresent = true;
   studentid: any = '';
   constructor(private route: Router, private examService: ExamService,
     private storage: Storage, private videoService: VideoService,
     public modalController: ModalController,
     private toastService: ToastService) {
-      this.storage.ready().then(() => {  
-    this.storage.get('studentid').then((studentid) => {
-     // alert("hi")
-      this.studentid = studentid;
-      //this.getschedule();
+    this.storage.ready().then(() => {
+      this.storage.get('studentid').then((studentid) => {
+        // alert("hi")
+        this.studentid = studentid;
+        //this.getschedule();
+      });
     });
-  });
   }
 
   ngOnInit() {
@@ -38,24 +39,27 @@ export class SubjectexamPage implements OnInit {
   ionViewDidEnter() {
     this.getschedule();
   }
-  
+
   getschedule() {
     const admindata: any = {
       studentId: this.studentid
     }
     //alert(this.studentid);
-    this.examService.post(admindata,'/subjectiveExam/schedules').subscribe(examdata => {
-       this.examschedule = examdata;
-    }, error => {
-     // this.errors = error
-      alert(error);
-  });
+     this.examService.post(admindata,'/subjectiveExam/schedules').subscribe(examdata => {
+        this.examschedule = examdata;
+        if(this.examschedule.length ==0){
+         this.ispresent =false;
+        }
+     }, error => {
+      // this.errors = error
+       alert(error);
+   });
 
-  //let response =this.examService.post1(admindata,'/subjectiveExam/schedules');
-  //console.log(response);
-    
+    //let response =this.examService.post1(admindata,'/subjectiveExam/schedules');
+    //console.log(response);
+
     /*this.storage.get('currentduration').then((currentduration) => {
-     // alert('he');
+      // alert('he');
       if (currentduration == null) {
         this.examService.getexamschedule(this.studentid).subscribe(examdata => {
           this.examschedule = examdata;
@@ -64,7 +68,7 @@ export class SubjectexamPage implements OnInit {
       } else {
         this.examService.getexamschedule1(this.studentid).subscribe(examdata => {
           this.examschedule = examdata;
-         // alert(JSON.stringify(examdata));
+          // alert(JSON.stringify(examdata));
         });
       }
     });*/
@@ -77,20 +81,23 @@ export class SubjectexamPage implements OnInit {
     this.videoService.setSubjectId = data.subjectId;
     this.videoService.setExamId = data.subExamId;
     console.log(data);
-    if (data.completed == 2) {
+    if (data.completed == 1) {
       this.route.navigate(['./examstart']);
     } else {
-      this.storage.ready().then(() => {  
-      this.storage.get('currentduration').then((currentduration) => {
-        console.log(currentduration);
-        if (currentduration == null || currentduration == undefined) {
-          this.openNewModal();
-        } else {
-          this.toastService.showToast('There is already an exam in progress , Please complete the exam before starting a new exam');
-          //  this.route.navigate(['./examstart']);
-        }
+      this.storage.ready().then(() => {
+        this.storage.get('currentduration').then((currentduration) => {
+          //alert(currentduration);
+          if (currentduration == null || currentduration == undefined) {
+            this.openNewModal();
+          } else if (currentduration == 0){
+            this.route.navigate(['./examstart']);
+          }
+          else {
+            this.toastService.showToast('There is already an exam in progress , Please complete the exam before starting a new exam');
+            //  this.route.navigate(['./examstart']);
+          }
+        });
       });
-    });
     }
 
 
@@ -115,16 +122,16 @@ export class SubjectexamPage implements OnInit {
           studentId: this.studentid,
           examId: this.videoService.getExamId
         }
-        this.examService.post(examstart,'/subjectiveExam/startExam').subscribe(examdata => {
-        console.log(examdata);
-        this.storage.ready().then(() => {  
-          this.storage.set('duration', this.videoService.getexamHr);
-          this.storage.set('currentduration', this.videoService.getexamHr);
-          console.log(this.videoService.getexamHr);
-          this.storage.set('startime', examdate).then(() => {
-            this.route.navigate(['./examstart']);
-          })
-        });
+        this.examService.post(examstart, '/subjectiveExam/startExam').subscribe(examdata => {
+          console.log(examdata);
+          this.storage.ready().then(() => {
+            this.storage.set('duration', this.videoService.getexamHr);
+            this.storage.set('currentduration', this.videoService.getexamHr);
+            console.log(this.videoService.getexamHr);
+            this.storage.set('startime', examdate).then(() => {
+              this.route.navigate(['./examstart']);
+            })
+          });
 
         });
 
@@ -136,7 +143,7 @@ export class SubjectexamPage implements OnInit {
             this.route.navigate(['./examstart']);
           })
         });*/
-        
+
 
       }
 
@@ -144,7 +151,7 @@ export class SubjectexamPage implements OnInit {
     return await modal.present();
   }
 
-  gohome(){
+  gohome() {
     this.route.navigate(['./home']);
   }
 }

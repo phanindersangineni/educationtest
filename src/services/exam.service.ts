@@ -6,6 +6,7 @@ import { catchError, map, retry } from 'rxjs/operators';
 import { LoaderService } from './LoaderService';
 import { HTTP } from '@ionic-native/http/ngx';
 import { NetworkService } from './network.service';
+import { ToastService } from './toastr.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class ExamService {
 
   constructor(private http: HttpClient,
     private networkService:NetworkService,
-    private http1: HTTP ) { }
+    private http1: HTTP ,
+    private loaderService:LoaderService) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -29,7 +31,7 @@ export class ExamService {
   }
 
   handleError(error: HttpErrorResponse) {
-    
+    this.loaderService.hideLoader();
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       alert(JSON.stringify(error.error.message));

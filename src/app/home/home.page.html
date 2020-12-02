@@ -1,24 +1,22 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-title>
-			<span class="ion-float-start" (click)="change_language()">
+			<!--<span class="ion-float-start" (click)="change_language()">
 				<ion-icon class="zmdi zmdi-settings ion-text-start"></ion-icon>
-			</span>
+			</span>-->
 			<span class="title">{{'app_title' | translate}}</span>
-			<span class="ion-float-end" (click)="notification()">
+			<!--<span class="ion-float-end" (click)="notification()">
 				<ion-icon class="zmdi zmdi-notifications ion-text-end"></ion-icon>
-			</span>
+			</span>-->
 		</ion-title>
 	</ion-toolbar>
 
-	<div class="profle_box d-flex" (click)="my_profile()">
+	<div class="profle_box d-flex">
 		<div class="profile_text">
-			<h2>{{'hello' | translate}} User,</h2>
-			<h3>13 Oct, 2020 Web</h3>
+			<h2>{{'hello' | translate}} Student,</h2>
+			<h3>{{todaydate}}</h3>
 		</div>
-		<div class="img_box end center_img">
-			<img src="assets/images/profile_pick.png" class="crop_img">
-		</div>
+		
 	</div>
 </ion-header>
 
@@ -26,9 +24,11 @@
 	<div class="container">
 		<div class="whats_next">
 			<h2>Todays Exam</h2>
-			<h3>{{todaysexam.exam}}</h3>
+			<!--<h3>{{todaysexam.exam}}</h3>
 			<h4 class="d-flex"> {{todaysexam.examtime}} {{todaysexam.span}} 
-				<span class="end" (click)="tests()">View</span></h4>
+				<span class="end" (click)="tests()">View</span></h4>-->
+
+				<h3>Comming Soon</h3>
 		</div>
 
 		<div class="menu_container">
@@ -50,7 +50,7 @@
 						</div>
 					</div>
 				</ion-col>
-				<ion-col size="6">
+				<!--<ion-col size="6">
 					<div class="menu d-flex" (click)="syllabus()">
 						<h2>{{'syllabus' | translate}}</h2>
 						<div class="menu_img end">
@@ -65,7 +65,7 @@
 							<img src="assets/images/ic_calender.png">
 						</div>
 					</div>
-				</ion-col>
+				</ion-col>-->
 				
 				
 				<ion-col size="6">

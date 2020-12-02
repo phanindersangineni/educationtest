@@ -45,7 +45,15 @@ export class AppComponent {
 
       let defaultLang = window.localStorage.getItem(Constants.KEY_DEFAULT_LANGUAGE);
       this.globalize(defaultLang);
+      document.addEventListener('backbutton', () => {
+        if (this.navCtrl.back) {
+           return;
+        }
+        this.navCtrl.pop()
+      }, false);
     });
+
+  
   }
 
   globalize(languagePriority) {

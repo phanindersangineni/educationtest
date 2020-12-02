@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 
 @Component({
@@ -8,8 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./downloads.page.scss'],
 })
 export class DownloadsPage implements OnInit {
-
-  constructor(private route: Router,) { }
+  todaydate = null;
+  constructor(private route: Router,) {
+    this.todaydate = moment(new Date()).format('DD/MM/YYYY');
+   }
 
   ngOnInit() {
   }

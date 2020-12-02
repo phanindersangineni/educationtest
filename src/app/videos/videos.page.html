@@ -15,7 +15,7 @@
 		</ion-segment-button>
 		<ion-segment-button value="offline">
 			<ion-label>
-				Offline Videos
+				Offline Videos ({{localvideoarray.length}})
 			</ion-label>
 		</ion-segment-button>
 	
@@ -31,13 +31,13 @@
 				<div class="item_container">
 					<div class="faculitie_details d-flex">
 						<div class="text_box">
-							<h3>By {{localvideo.facultyName}}</h3>
+							<h3>By {{localvideo.facultyName}} ({{localvideo.videosize}} MB)</h3>
 							<p>
 								{{localvideo.description}}
 							</p>
 						</div>
-						<div class="img_box end center_img">
-							<img src="assets/images/3.png" class="crop_img">
+						<div class="end" (click)="deletevideo(localvideo)">
+							<ion-icon name="trash"></ion-icon>
 						</div>
 					</div>
 
@@ -70,8 +70,11 @@
 								{{vidarry.description}}
 							</p>
 						</div>
-						<div class="img_box end center_img" (click) ="getPermission(vidarry)">
+						<div *ngIf="vidarry.isdownloaded =='N'" class="img_box end center_img" (click) ="getPermission(vidarry)">
 							<img src="assets/images/download.png" class="crop_img">
+						</div>
+						<div *ngIf="vidarry.isdownloaded =='Y'" class="img_box end center_img">
+							Downloaded
 						</div>
 					</div>
 

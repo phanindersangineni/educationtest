@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { APP_CONFIG, AppConfig } from '../app.config';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import { Storage } from '@ionic/storage';
+import * as moment from 'moment';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  todaydate = null;
   options : InAppBrowserOptions = {
     location : 'yes',//Or 'no' 
     hidden : 'no', //Or  'yes'
@@ -38,6 +39,8 @@ username ='';
      console.log(this.todaysexam);
      //alert("hhhh");
     });
+
+     this.todaydate = moment(new Date()).format('DD/MM/YYYY');
     
    }
 

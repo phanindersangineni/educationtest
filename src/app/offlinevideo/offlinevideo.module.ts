@@ -13,6 +13,15 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 
+import {  
+  FileTransfer,  
+  FileTransferObject  
+} from '@ionic-native/file-transfer/ngx'; 
+
+import {  
+  File  
+} from '@ionic-native/file/ngx'; 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +36,8 @@ import { VgBufferingModule } from 'videogular2/buffering';
   ],
   
   providers: [
-   VideoPlayer
+   VideoPlayer,
+   File
   ],
   declarations: [OfflinevideoPage]
 })

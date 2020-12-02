@@ -26,6 +26,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Network } from '@ionic-native/network/ngx'
 import { HTTP } from '@ionic-native/http/ngx';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -43,7 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: '_myDb',
-      driverOrder: ['localstorage']
+      driverOrder: ['indexeddb', 'sqlite', 'websql', 'localstorage']
     }),
     AppRoutingModule,
     HttpClientModule,
@@ -73,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
     FilePath,
     Network,
     HTTP,
+    SQLite
   ],
   bootstrap: [AppComponent]
 })

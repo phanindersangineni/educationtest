@@ -12,6 +12,7 @@ import { CountdownEventService } from 'src/services/countdownevent.service';
 //import { FileChooser } from "@ionic-native/file-chooser";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { FilePath } from "@ionic-native/file-path/ngx";
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -39,6 +40,8 @@ export class UploadsPage implements OnInit {
   subExamSecId = '1';
   subjectid: any = '1';
   currentduration: any = 0;
+  actionsheet :any;
+  subscription:Subscription;
   constructor(
     private route: Router,
     private navCtrl: NavController,
@@ -54,7 +57,8 @@ export class UploadsPage implements OnInit {
     private camera: Camera,
     //private fileChooser: FileChooser,
     private plt: Platform,
-    private filePath: FilePath
+    private filePath: FilePath,
+    private platform:Platform
   ) {
     this.subjectid = this.VideoService.getSubjectId;
     this.subExamSecId = this.VideoService.getsubExamSecId;
@@ -85,10 +89,19 @@ export class UploadsPage implements OnInit {
 
     });
 
+    this.autosubmitevent.getObservable().subscribe((data) => {
+      this.closeactionsheet();
+    });
+   
+
 
   }
 
   ngOnInit() {
+  }
+
+  closeactionsheet(){
+    this.actionsheet.dismiss();
   }
 
   /*startcountdown() {
@@ -229,7 +242,7 @@ export class UploadsPage implements OnInit {
   }
 
  async presentActionSheet() {
-    let actionSheet = await this.actionSheetCtrl.create({
+     let actionSheet = await this.actionSheetCtrl.create({
       buttons: [
         {
           text: "From Gallery",
@@ -253,7 +266,7 @@ export class UploadsPage implements OnInit {
         }
       ]
     });
-
+      this.actionsheet = actionSheet;
     actionSheet.present();
   }
 
@@ -272,7 +285,8 @@ export class UploadsPage implements OnInit {
       })
       .catch(e => {
         alert(e);
-        this.toastService.showToast("Error while picking from gallery");
+        this.toastService.showToast(e);
+        //this.toastService.showToast("Error while picking from gallery");
       });
 
   }
@@ -422,9 +436,20 @@ export class UploadsPage implements OnInit {
 
   }
 
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribeWithPriority(9999, () => {
+      // do nothing
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
+  }
+
+
 
   goback() {
-    this.navCtrl.navigateRoot(['./examstart']);
+    this.route.navigate(['./examstart']);
   }
   goToLeaderboard() {
     this.route.navigate(['./leaderboard']);

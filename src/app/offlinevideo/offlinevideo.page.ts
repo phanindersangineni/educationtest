@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VideoPlayer, VideoOptions } from '@ionic-native/video-player/ngx';
 import { Subscription } from 'rxjs';
 import { VgAPI } from 'videogular2/core';
 import { Storage } from '@ionic/storage';
 import { VideoService } from 'src/services/video.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-offlinevideo',
   templateUrl: './offlinevideo.page.html',
@@ -19,27 +21,34 @@ export class OfflinevideoPage implements OnInit {
   subjectid: '';
   topicid: '';
   subtopicid: '';
+  content:any;
+  count:any;
 
   constructor(private route: Router, private videoPlayer: VideoPlayer,
     private storage: Storage,
-    private videoService: VideoService) {
+    private videoService: VideoService,private domSanitizer: DomSanitizer) {
     /* this.storage.get('base64').then((base64) => {
        // this.base64 ='https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4';
-        //"data:video/mp4;base64,"
+        //"data:video/p4;base64,"
         //base64;
        //alert(this.base64);
       
       });*/
-    //alert(this.videoService.getbase64String);
     this.subtopicid = this.videoService.getSubjectId;
     this.topicid = this.videoService.getTopicId;
     this.subjectid = this.videoService.getSubTopicId;
-    this.base64 = this.videoService.getbase64String;
+    //this.startlocalserver();
+   
+    this.base64 = this.domSanitizer.bypassSecurityTrustUrl(this.videoService.getbase64String);
+
   }
 
   ngOnInit() {
-
+   
   }
+
+  
+  
 
 
   closeVideo() {

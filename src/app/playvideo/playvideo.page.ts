@@ -20,6 +20,9 @@ export class PlayvideoPage implements OnInit {
   subjectid: '12';
   topicid: '12';
   subtopicid: '13';
+  current:any =0;
+  total:any =0;
+  left:any =0;
 
   constructor(private route: Router, private videoPlayer: VideoPlayer,
     private storage: Storage,
@@ -32,9 +35,14 @@ export class PlayvideoPage implements OnInit {
     if (this.videourl == null) {
       this.videourl = 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4';
     }
+    this.videourl ='https://testscaitsbucket.s3.ap-south-1.amazonaws.com/videos/Chemisrtry.mp4';
   }
 
   ngOnInit() {
+  }
+
+  ionViewDidLeave(){
+    this.capturewatchevent();
   }
 
 
@@ -53,28 +61,11 @@ export class PlayvideoPage implements OnInit {
           this.storage.set("currenttime", this.api.getDefaultMedia().currentTime);
           console.log(this.api.getDefaultMedia().duration);
           console.log(this.api.getDefaultMedia().time);
-          let timespandata = this.api.getDefaultMedia().time
-          let studentvideoarray = [];
-          const postdata = {
-            subjectid: this.subjectid,
-            topicid: this.topicid,
-            subtopicid: this.subtopicid,
-            watchtime: timespandata.current,
-            totaltime: timespandata.total,
-            lefttime: timespandata.left
-
-          }
-
-          studentvideoarray.push(postdata);
-          const finalpostdata: any = {
-            studentid: this.studentid,
-            videoarray: studentvideoarray
-          }
-          console.log(finalpostdata);
-          /*this.examService.post(finalpostdata,'videotimecapture').subscribe(result => {
-             
-          });*/
-
+          let timespandata = this.api.getDefaultMedia().time;
+          this.current= timespandata.current;
+          this.total= timespandata.total;
+          this.left = timespandata.left;
+       
         }
 
       )
@@ -92,6 +83,32 @@ export class PlayvideoPage implements OnInit {
         }
       );
     });
+  }
+
+  capturewatchevent(){
+
+    let studentvideoarray = [];
+    const postdata = {
+      subjectid: this.subjectid,
+      topicid: this.topicid,
+      subtopicid: this.subtopicid,
+      watchtime: this.current,
+      totaltime: this.total,
+      lefttime: this.left
+
+    }
+
+    studentvideoarray.push(postdata);
+    const finalpostdata: any = {
+      studentid: this.studentid,
+      videoarray: studentvideoarray
+    }
+    console.log(finalpostdata);
+    /*this.examService.post(finalpostdata,'videotimecapture').subscribe(result => {
+       
+    });*/
+
+
   }
 
 
