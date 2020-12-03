@@ -8,7 +8,6 @@ import { ToastService } from 'src/services/toastr.service';
 import { VideoService } from 'src/services/video.service';
 import { ConfirmationPage } from '../modals/confirmation/confirmation.page';
 
-import { HTTP } from '@ionic-native/http/ngx';
 
 @Component({
   selector: 'app-subjectexam',

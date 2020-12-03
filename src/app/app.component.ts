@@ -26,6 +26,7 @@ export class AppComponent {
     this.myEvent.getLanguageObservable().subscribe(value => {
       this.storage.ready().then(() => {
         this.storage.get('studentid').then((studentid) => {
+        
           if (studentid == null) {
             this.navCtrl.navigateRoot(['./']);
             this.globalize(value);
@@ -54,7 +55,7 @@ export class AppComponent {
     });
 
   
-  }
+  };
 
   globalize(languagePriority) {
     this.translate.setDefaultLang("en");

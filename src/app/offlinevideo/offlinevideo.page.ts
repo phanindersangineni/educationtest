@@ -41,6 +41,8 @@ export class OfflinevideoPage implements OnInit {
    
     this.base64 = this.domSanitizer.bypassSecurityTrustUrl(this.videoService.getbase64String);
 
+    alert(this.base64)
+
   }
 
   ngOnInit() {

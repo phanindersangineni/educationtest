@@ -37,6 +37,9 @@ export class VideosPage implements OnInit {
   alreadydownloaded = [];
   vidarray: any;
   storagesize = 0;
+  studentid: any = '';
+  videoId :any ='';
+  ispresent :boolean= true;
   readonly database_name: string = "neet.db";
   readonly table_name: string = "offlinevideos";
   //private fileTransfer: FileTransferObject;
@@ -58,20 +61,10 @@ export class VideosPage implements OnInit {
       volume: 0.5
     };
 
-    /*this.platform.ready().then(() => {
-    //  this.getRows();
-     this.createDB();
-    }).catch(error => {
-      console.log(error);
-    })*/
-
     this.dbService.getRecords().subscribe(records => {
       this.loadlocalarray(records);
 
     })
-
-
-
 
   }
 
@@ -79,25 +72,22 @@ export class VideosPage implements OnInit {
     this.storage.ready().then(() => {
       this.storage.get('storagesize').then((storagesize) => {
         this.storagesize = storagesize;
-        alert(this.storagesize);
+       // alert(this.storagesize);
+      });
+      this.storage.get('studentid').then((studentid) => {
+        // alert("hi")
+        this.studentid = studentid;
+        this.storage.get('videoId').then((videoId) => {
+          this.videoId =videoId;
+         this.loadvideos();
+        });
       });
     });
 
     this.dbService.dbState().subscribe((res) => {
-      //alert(res);
-      /*this.dbService.getAlldownloads().then(item => {
-      })*/
-
+     
     });
-    this.loadvideos();
-
-    /*this.storage.get('localvideoarray').then((localvideoarray) => {
-      this.localvideoarray = localvideoarray;
-      if (this.localvideoarray == null) {
-        this.localvideoarray = [];
-      }
-    })*/
-
+   
     if (this.platform.is('ios')) {
       this.storageDirectory = this.file.documentsDirectory;
     }
@@ -122,16 +112,12 @@ export class VideosPage implements OnInit {
   playLocalVideo(data) {
 
     this.videoService.setbase64String = data.base64;
-    this.videoService.setSubjectId = data.subjectId;
-    this.videoService.setTopicId = data.topicid;
-    this.videoService.setSubTopicId = data.subtopicid;
+    this.videoService.setSubTopicId = data.subVideoId;
     this.route.navigate(['./offlinevideo']);
   }
   playRemoteVideo(vidar) {
     this.videoService.setVideoUrl = vidar.url;
-    this.videoService.setSubjectId = vidar.subjectId;
-    this.videoService.setTopicId = vidar.topicid;
-    this.videoService.setSubTopicId = vidar.subtopicid;
+    this.videoService.setSubTopicId = vidar.subVideoId;
     this.route.navigate(['./playvideo']);
   }
 
@@ -140,9 +126,22 @@ export class VideosPage implements OnInit {
   }
 
   loadvideos() {
-    this.examService.getonlineVideos('').subscribe(examdata => {
+    const admindata: any = {
+      videoId: this.videoId
+    }
+    this.examService.post(admindata,'/student/subVideos').subscribe(examdata => {
       this.videoarray = examdata;
+      if(this.videoarray.length ==0){
+        this.ispresent=false;
+      }else{
+        this.ispresent=true;
+      }
     });
+
+    this.dbService.getAlldownloads(this.videoId).then(item => {
+
+    });
+    
   }
 
   getPermission(vidarry) {
@@ -178,7 +177,7 @@ export class VideosPage implements OnInit {
         if (this.storagesize == 20000) {
           this.toastr.showToast('There is no enough storage space left, Please delete some of the videos');
         } else {
-          let result = this.alreadydownloaded.find(x => x == vidarry.subtopicid);
+          let result = this.alreadydownloaded.find(x => x == vidarry.subVideoId);
 
           if (result == undefined) {
             this.download(vidarry);
@@ -207,7 +206,7 @@ export class VideosPage implements OnInit {
       this.fileTransfer.download(url, this.storageDirectory + vidarry.fileName, true).then((entry) => {
         //here logging our success downloaded file path in mobile.  
         // alert('download completed: ' + entry.toURL());
-        //alert("download completed" + this.storageDirectory);
+       // alert("download completed" + this.storageDirectory);
 
         this.getBase64StringByFilePath(vidarry);
         // this.ionLoader.hideLoader();
@@ -224,15 +223,23 @@ export class VideosPage implements OnInit {
 
   deletevideo(videarray) {
 
-    this.dbService.delete(videarray.subtopicid).then(item1 => {
+    this.dbService.delete(videarray.subVideoId,videarray.videoId).then(item1 => {
       //alert(JSON.stringify(item1));
       this.storage.get('storagesize').then((storagesize) => {
         this.storagesize = this.storagesize - parseInt(storagesize);
 
         this.storage.set('storagesize', this.storagesize).then(() => {
 
-          this.alreadydownloaded = this.alreadydownloaded.filter(item => item !== videarray.subtopicid)
+          this.alreadydownloaded = this.alreadydownloaded.filter(item => item !== videarray.subVideoId)
           this.toastr.showToast("Video removed successfully");
+          const updatdata :any ={
+            subVideoId:videarray.subVideoId,
+            isdownloaded:'N',
+            studentId: this.studentid
+          }
+          this.examService.post(updatdata,'/student/downloadStatus').subscribe(examdata => {
+            this.loadvideos();
+          });
         });
       });
 
@@ -245,8 +252,8 @@ export class VideosPage implements OnInit {
   getBase64StringByFilePath(vidarry) {
     return new Promise(async (resolve) => {
       //let res:any = await this.file.resolveLocalFilesystemUrl('file:///storage/emulated/0/chaitanya/sample-mp4-file.mp4');
-      let res: any = await this.file.resolveLocalFilesystemUrl('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/Chemisrtry.mp4');
-
+      let res: any = await this.file.resolveLocalFilesystemUrl('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/'+vidarry.fileName);
+      
       res.file((resFile) => {
         let reader = new FileReader();
         reader.readAsDataURL(resFile);
@@ -260,7 +267,6 @@ export class VideosPage implements OnInit {
           this.videoService.setbase64String = newBase64;
 
           try {
-
             this.dbService.createtable().then(item => {
 
               this.dbService.inserttable(vidarry, newBase64).then(item1 => {
@@ -269,8 +275,33 @@ export class VideosPage implements OnInit {
                 this.storagesize = this.storagesize + parseInt(vidarry.videosize);
                 this.storage.set('storagesize', this.storagesize);
                 this.toastr.showToast('Download Completed');
-                this.alreadydownloaded.push(vidarry.subtopicid);
+                this.alreadydownloaded.push(vidarry.subVideoId);
+                const updatdata :any ={
+                  subVideoId:vidarry.subVideoId,
+                  isdownloaded:'Y',
+                  studentId: this.studentid
+                }
+                this.examService.post(updatdata,'/student/downloadStatus').subscribe(examdata => {
+                  this.loadvideos();
+                  
+                 /* resFile.remove(function() {
+                    // if the file has been successfully removed
+                    alert("File Removed");
+                }, function(error) {
+                  alert(error);
+                    // if there was an error removing the file
+                }, function() {
+                    // if the file does not exist
+                    alert("File dosent exists");
+                });*/
 
+                this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/',vidarry.fileName).then( data => {
+
+                  //alert("File removed");
+                }).catch( error => {
+                  alert(error);
+              });
+                });
 
                 this.ionLoader.hideLoader();
               })
@@ -294,49 +325,30 @@ export class VideosPage implements OnInit {
   }
 
   loadlocalarray(records) {
+    this.localvideoarray = [];
     if (records.length > 0) {
-      this.localvideoarray = [];
+      
       for (var i = 0; i < records.length; i++) {
         // this.localvideoarray.push();
         let resp = records[i];
         const localdata: any = {
           facultyName: resp.facultyName,
-          Subject: resp.Subject,
+          subjectName: resp.subjectName,
           description: resp.description,
           base64: resp.base64,
-          topicid: resp.topicid,
           topicName: resp.topicName,
-          subtopicid: resp.subtopicid,
+          subVideoId: resp.subVideoId,
           subtopicName: resp.subtopicName,
-          videosize: resp.videosize
+          videosize: resp.videosize,
+          videoId: resp.videoId
         }
         this.localvideoarray.push(localdata);
-        this.alreadydownloaded.push(resp.subtopicid);
-        //alert(this.localvideoarray.length);
-        //this.loadvideos();
-        //alert(res.rows.item(i));
-        //this.row_data.push(res.rows.item(i));
-      }
+        this.alreadydownloaded.push(resp.subVideoId);
+         }
 
     }
   }
 
-
-  calculateImageSize(base64String) {
-    let padding;
-    let inBytes;
-    let base64StringLength;
-    if (base64String.endsWith('==')) { padding = 2; }
-    else if (base64String.endsWith('=')) { padding = 1; }
-    else { padding = 0; }
-
-    base64StringLength = base64String.length;
-    console.log(base64StringLength);
-    inBytes = (base64StringLength / 4) * 3 - padding;
-    console.log(inBytes);
-    this.kbytes = inBytes / 1000;
-    return this.kbytes;
-  }
 
   faculties_messages() {
     this.route.navigate(['./faculties-message']);

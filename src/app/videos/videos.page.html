@@ -33,7 +33,7 @@
 						<div class="text_box">
 							<h3>By {{localvideo.facultyName}} ({{localvideo.videosize}} MB)</h3>
 							<p>
-								{{localvideo.description}}
+								{{localvideo.topicName}} / {{localvideo.subtopicName}}
 							</p>
 						</div>
 						<div class="end" (click)="deletevideo(localvideo)">
@@ -43,7 +43,7 @@
 
 					<ion-row>
 						<ion-col size="7">
-							<p>{{localvideo.Subject}}/{{localvideo.topicName}}/{{localvideo.subtopicName}}</p>
+							<p>{{localvideo.subjectName}}</p>
 						</ion-col>
 						<ion-col size="5" class="ion-text-end">
 							<div class="message" (click)="playLocalVideo(localvideo)">
@@ -62,25 +62,24 @@
 		<ion-list lines="none" *ngSwitchCase="'online'">
 			
 			<ion-item *ngFor =" let vidarry of videoarray">
-				<div class="item_container">
+				<div  *ngIf ="ispresent" class="item_container">
 					<div class="faculitie_details d-flex">
 						<div class="text_box">
 							<h3>By {{vidarry.facultyName}}</h3>
 							<p> 
-								{{vidarry.description}}
+								{{vidarry.topicName}} / {{vidarry.subtopicName}}
 							</p>
+							<p *ngIf="vidarry.isdownloaded =='Y'">Downloaded </p>
 						</div>
-						<div *ngIf="vidarry.isdownloaded =='N'" class="img_box end center_img" (click) ="getPermission(vidarry)">
+						<div  class="img_box end center_img" (click) ="getPermission(vidarry)">
 							<img src="assets/images/download.png" class="crop_img">
 						</div>
-						<div *ngIf="vidarry.isdownloaded =='Y'" class="img_box end center_img">
-							Downloaded
-						</div>
+					
 					</div>
 
 					<ion-row>
 						<ion-col size="7">
-							<p>{{vidarry.Subject}}/{{vidarry.topicName}}/{{vidarry.subtopicName}} </p>
+							<p>{{vidarry.subjectName}} </p>
 						</ion-col>
 						<ion-col size="5" class="ion-text-end">
 							
@@ -92,7 +91,18 @@
 						</ion-col>
 					</ion-row>
 				</div>
+				
 			</ion-item>
+			<ion-item  *ngIf ="!ispresent" >
+				<div lass="item_container">
+					<ion-row>
+						<ion-col size="11">
+							<p>Currently no videos available</p>
+						</ion-col>
+						
+					</ion-row>
+				</div>
+				</ion-item>
 
 		</ion-list>
 

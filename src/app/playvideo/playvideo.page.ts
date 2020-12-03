@@ -29,13 +29,11 @@ export class PlayvideoPage implements OnInit {
     private videoService: VideoService,
     private examService: ExamService) {
     this.subtopicid = this.videoService.getSubjectId;
-    this.topicid = this.videoService.getTopicId;
-    this.subjectid = this.videoService.getSubTopicId;
     this.videourl = this.videoService.getVideoUrl;
     if (this.videourl == null) {
       this.videourl = 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4';
     }
-    this.videourl ='https://testscaitsbucket.s3.ap-south-1.amazonaws.com/videos/Chemisrtry.mp4';
+   // this.videourl ='https://testscaitsbucket.s3.ap-south-1.amazonaws.com/videos/Chemisrtry.mp4';
   }
 
   ngOnInit() {
@@ -89,9 +87,8 @@ export class PlayvideoPage implements OnInit {
 
     let studentvideoarray = [];
     const postdata = {
-      subjectid: this.subjectid,
-      topicid: this.topicid,
-      subtopicid: this.subtopicid,
+      studentid:this.studentid,
+      subVideoId: this.subtopicid,
       watchtime: this.current,
       totaltime: this.total,
       lefttime: this.left
@@ -99,12 +96,9 @@ export class PlayvideoPage implements OnInit {
     }
 
     studentvideoarray.push(postdata);
-    const finalpostdata: any = {
-      studentid: this.studentid,
-      videoarray: studentvideoarray
-    }
-    console.log(finalpostdata);
-    /*this.examService.post(finalpostdata,'videotimecapture').subscribe(result => {
+    
+    //console.log(finalpostdata);
+    /*this.examService.post(postdata,'videotimecapture').subscribe(result => {
        
     });*/
 

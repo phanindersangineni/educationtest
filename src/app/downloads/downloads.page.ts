@@ -17,6 +17,7 @@ export class DownloadsPage implements OnInit {
   ngOnInit() {
   }
  videos() {
-    this.route.navigate(['./videos']);
+    //this.route.navigate(['./videos']);
+    this.route.navigate(['./syllabus']);
   }
 }
