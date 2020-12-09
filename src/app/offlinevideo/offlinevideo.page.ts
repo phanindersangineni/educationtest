@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { VideoService } from 'src/services/video.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-offlinevideo',
   templateUrl: './offlinevideo.page.html',
@@ -24,6 +25,8 @@ export class OfflinevideoPage implements OnInit {
   content:any;
   count:any;
 
+  
+
   constructor(private route: Router, private videoPlayer: VideoPlayer,
     private storage: Storage,
     private videoService: VideoService,private domSanitizer: DomSanitizer) {
@@ -38,15 +41,30 @@ export class OfflinevideoPage implements OnInit {
     this.topicid = this.videoService.getTopicId;
     this.subjectid = this.videoService.getSubTopicId;
     //this.startlocalserver();
+    this.options = {
+      scalingMode: 0,
+      volume: 0.5
+    };
    
-    this.base64 = this.domSanitizer.bypassSecurityTrustUrl(this.videoService.getbase64String);
+   // this.base64 = this.domSanitizer.bypassSecurityTrustUrl(this.videoService.getbase64String);
 
-    alert(this.base64)
+   this.base64 = this.domSanitizer.bypassSecurityTrustUrl('/data/user/0/com.srichaitanya.neetdb/files/chaitanya/chemistry_part3.mp4');
+   
+    //alert(this.base64)
 
   }
 
   ngOnInit() {
    
+  }
+
+  playLocalVideo() {
+    // Playing a video.
+    this.videoPlayer.play('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/chemistry_part3.mp4').then(() => {
+      console.log('video completed');
+    }).catch(err => {
+      alert(err);
+    });
   }
 
   

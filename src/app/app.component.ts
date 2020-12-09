@@ -24,19 +24,21 @@ export class AppComponent {
     private storage: Storage) {
     this.initializeApp();
     this.myEvent.getLanguageObservable().subscribe(value => {
-      this.storage.ready().then(() => {
-        this.storage.get('studentid').then((studentid) => {
-        
-          if (studentid == null) {
-            this.navCtrl.navigateRoot(['./']);
-            this.globalize(value);
-          } else {
-            this.navCtrl.navigateRoot(['./home']);
-            this.globalize(value);
-          }
-        });
-      });
+      this.globalize(value);
+     
     });
+
+    /*this.storage.ready().then(() => {
+      this.storage.get('studentid').then((studentid) => {
+        if (studentid == null) {
+          this.navCtrl.navigateRoot(['./']);
+         
+        } else {
+          this.navCtrl.navigateRoot(['./home']);
+         
+        }
+      });
+    });*/
   }
 
   initializeApp() {

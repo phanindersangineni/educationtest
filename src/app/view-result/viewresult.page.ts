@@ -14,11 +14,11 @@ import { LoaderService } from 'src/services/LoaderService';
 import { NetworkService } from 'src/services/network.service';
 import { Subscription } from 'rxjs';
 @Component({
-  selector: 'app-examstart',
-  templateUrl: './examstart.page.html',
-  styleUrls: ['./examstart.page.scss'],
+  selector: 'app-viewresult',
+  templateUrl: './viewresult.page.html',
+  styleUrls: ['./viewresult.page.scss'],
 })
-export class ExamstartPage implements OnInit {
+export class ViewResultPage implements OnInit {
   tab: string = "upcoming_test";
   todaysexam: any = {};
   canstartexam = false;
@@ -107,7 +107,7 @@ export class ExamstartPage implements OnInit {
         }
         console.log(this.currentduration);
         if (parseInt(this.currentduration) != 0) {
-          this.startcountdown();
+         
         }
       })
       //alert("123123");
@@ -130,58 +130,7 @@ export class ExamstartPage implements OnInit {
     //clearInterval(this.interval);
     // document.getElementById("question").innerHTML = "hhi";
   }
-  private maxTime = 10;
-  startcountdown() {
-    //var a = parseInt(this.currentduration);
-    var a = 0;
-    var b = parseInt(this.currentduration);
-     this.interval = setInterval(() => {
-     // alert(a++);
-      //alert(b);
-      if (a == b) {
-        this.currentduration = 0;
-        this.storage.ready().then(() => {
-          this.storage.set('currentduration', this.currentduration);
-        });
-        clearInterval(this.interval);
-        this.confirmforautosubmit();
-
-
-      } else {
-        this.currentduration = parseInt(this.currentduration) - 1;
-        this.countdownEventService.publishCountdown(this.currentduration);
-        this.storage.ready().then(() => {
-          this.storage.set('currentduration', this.currentduration);
-        });
-      }
-
-    }, 60000);
-
-
-  }
-  async confirmforautosubmit() {
-    alert(this.submissionstarted);
-    if (!this.submissionstarted) {
-      const alert = await this.alertController.create({
-        cssClass: 'syllabus',
-        header: 'Exam Submission !!',
-        message: 'Your alloted time for exam has expired,Your exam will be auto submitted',
-        buttons: [
-          {
-            text: 'OK',
-            handler: () => {
-              console.log('Confirm Okay');
-              this.autoSubmit(3);
-            }
-          }
-        ],
-        backdropDismiss: false
-      });
-
-      await alert.present();
-    }
-  }
-
+ 
   getexamquestions() {
     /*this.examService.getexamquestions('').subscribe(examdata => {
       this.examquestions = examdata;

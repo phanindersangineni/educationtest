@@ -89,9 +89,9 @@ export class UploadsPage implements OnInit {
 
     });
 
-    this.autosubmitevent.getObservable().subscribe((data) => {
+   /* this.autosubmitevent.getObservable().subscribe((data) => {
       this.closeactionsheet();
-    });
+    });*/
    
 
 
@@ -101,7 +101,7 @@ export class UploadsPage implements OnInit {
   }
 
   closeactionsheet(){
-    this.actionsheet.dismiss();
+    //this.actionsheet.dismiss();
   }
 
   /*startcountdown() {
@@ -177,8 +177,7 @@ export class UploadsPage implements OnInit {
             const autosubmit: any = {
               submit: true
             }
-            this.autosubmitevent.publish(autosubmit);
-
+           
           }
         }
       ]

@@ -44,20 +44,20 @@ export class SubjectexamPage implements OnInit {
       studentId: this.studentid
     }
     //alert(this.studentid);
-     this.examService.post(admindata,'/subjectiveExam/schedules').subscribe(examdata => {
-        this.examschedule = examdata;
-        if(this.examschedule.length ==0){
-         this.ispresent =false;
-        }
-     }, error => {
+   /* this.examService.post(admindata, '/subjectiveExam/schedules').subscribe(examdata => {
+      this.examschedule = examdata;
+      if (this.examschedule.length == 0) {
+        this.ispresent = false;
+      }
+    }, error => {
       // this.errors = error
-       alert(error);
-   });
+      alert(error);
+    });*/
 
     //let response =this.examService.post1(admindata,'/subjectiveExam/schedules');
     //console.log(response);
 
-    /*this.storage.get('currentduration').then((currentduration) => {
+    this.storage.get('currentduration').then((currentduration) => {
       // alert('he');
       if (currentduration == null) {
         this.examService.getexamschedule(this.studentid).subscribe(examdata => {
@@ -70,7 +70,13 @@ export class SubjectexamPage implements OnInit {
           // alert(JSON.stringify(examdata));
         });
       }
-    });*/
+    });
+  }
+
+  viewresult(data) {
+    this.videoService.setSubjectId = data.subjectId;
+    this.videoService.setExamId = data.subExamId;
+    this.route.navigate(['./test-result']);
   }
 
   async openModal(data) {
@@ -85,16 +91,20 @@ export class SubjectexamPage implements OnInit {
     } else {
       this.storage.ready().then(() => {
         this.storage.get('currentduration').then((currentduration) => {
-          //alert(currentduration);
-          if (currentduration == null || currentduration == undefined) {
-            this.openNewModal();
-          } else if (currentduration == 0){
-            this.route.navigate(['./examstart']);
-          }
-          else {
-            this.toastService.showToast('There is already an exam in progress , Please complete the exam before starting a new exam');
-            //  this.route.navigate(['./examstart']);
-          }
+          this.storage.get('studentanswerdata').then((studentanswerdata) => {
+            //alert(currentduration);
+            if (currentduration == null || currentduration == undefined) {
+              this.openNewModal();
+            } else if (currentduration == 0 && studentanswerdata != null) {
+              this.route.navigate(['./examstart']);
+            }else if (currentduration == 0 && studentanswerdata == null) {
+              this.openNewModal();
+            }
+            else {
+              this.toastService.showToast('There is already an exam in progress , Please complete the exam before starting a new exam');
+              //  this.route.navigate(['./examstart']);
+            }
+          });
         });
       });
     }

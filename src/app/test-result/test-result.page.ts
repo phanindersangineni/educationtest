@@ -18,10 +18,14 @@ export class TestResultPage implements OnInit {
 	
 	
  goTohome() {
-    this.navCtrl.navigateRoot(['./home']);
+    this.route.navigate(['./subjectexam']);
   } 
  goToLeaderboard() {
     this.route.navigate(['./leaderboard']);
+  }
+
+  viewresult() {
+    this.route.navigate(['./viewresult']);
   }
 
 }

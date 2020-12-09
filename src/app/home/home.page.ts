@@ -80,6 +80,9 @@ username ='';
   support() {
     this.route.navigate(['./support']);
   }
+  allstudents() {
+    this.route.navigate(['./students']);
+  }
   logout() {
     this.storage.remove('studentid').then(() => {
     this.route.navigate(['./sing-in']);

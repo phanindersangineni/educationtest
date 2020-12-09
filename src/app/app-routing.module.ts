@@ -65,6 +65,28 @@ const routes: Routes = [
     path: 'test-result',
     loadChildren: () => import('./test-result/test-result.module').then( m => m.TestResultPageModule)
   },
+  {
+    path: 'viewresult',
+    loadChildren: () => import('./view-result/viewresult.module').then( m => m.ViewResultPageModule)
+  },
+  {
+    path: 'students',
+    loadChildren: () => import('./students/students.module').then( m => m.StudentsPageModule)
+  },
+
+  {
+    path: 'examlist',
+    loadChildren: () => import('./examlist/examlist.module').then( m => m.ExamlistPageModule)
+  },
+  {
+    path: 'examanswers',
+    loadChildren: () => import('./examanswers/examanswers.module').then( m => m.ExamanswersPageModule)
+  },
+  {
+    path: 'uploadedsheets',
+    loadChildren: () => import('./uploadedsheets/uploadedsheets.module').then( m => m.UploadedsheetsPageModule)
+  },
+
 
   {
     path: 'uploads',

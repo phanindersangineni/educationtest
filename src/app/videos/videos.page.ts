@@ -94,7 +94,7 @@ export class VideosPage implements OnInit {
     else if (this.platform.is('android')) {
 
 
-      this.file.checkDir(this.file.dataDirectory, 'chaitanya').then(response => {
+     /* this.file.checkDir(this.file.dataDirectory, 'chaitanya').then(response => {
         console.log('Directory exists' + response);
       }).catch(err => {
         console.log('Directory doesn\'t exist' + JSON.stringify(err));
@@ -103,7 +103,7 @@ export class VideosPage implements OnInit {
         }).catch(err => {
           console.log('Directory no create' + JSON.stringify(err));
         });
-      });
+      });*/
 
     }
 
@@ -205,13 +205,14 @@ export class VideosPage implements OnInit {
       // here iam mentioned this line this.file.externalRootDirectory is a native pre-defined file path storage. You can change a file path whatever pre-defined method.  
       this.fileTransfer.download(url, this.storageDirectory + vidarry.fileName, true).then((entry) => {
         //here logging our success downloaded file path in mobile.  
-        // alert('download completed: ' + entry.toURL());
+         //alert('download completed: ' + entry.toURL());
        // alert("download completed" + this.storageDirectory);
 
         this.getBase64StringByFilePath(vidarry);
         // this.ionLoader.hideLoader();
       }, (error) => {
         this.ionLoader.hideLoader();
+         alert("error connecting external url");
         //here logging our error its easier to find out what type of error occured.  
         alert(JSON.stringify(error));
 
@@ -253,7 +254,7 @@ export class VideosPage implements OnInit {
     return new Promise(async (resolve) => {
       //let res:any = await this.file.resolveLocalFilesystemUrl('file:///storage/emulated/0/chaitanya/sample-mp4-file.mp4');
       let res: any = await this.file.resolveLocalFilesystemUrl('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/'+vidarry.fileName);
-      
+      alert("conversion start");
       res.file((resFile) => {
         let reader = new FileReader();
         reader.readAsDataURL(resFile);
@@ -263,7 +264,7 @@ export class VideosPage implements OnInit {
           let decodedBase64 = atob(OriginalBase64); // Decode the incorrectly encoded base64 string.
           let encodedBase64 = btoa(decodedBase64); // re-encode the base64 string (correctly).
           let newBase64 = encodingType + encodedBase64; // Add the encodingType to the string.
-
+          //alert("conversion done");
           this.videoService.setbase64String = newBase64;
 
           try {
@@ -295,12 +296,12 @@ export class VideosPage implements OnInit {
                     alert("File dosent exists");
                 });*/
 
-                this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/',vidarry.fileName).then( data => {
+               /* this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/',vidarry.fileName).then( data => {
 
                   //alert("File removed");
                 }).catch( error => {
                   alert(error);
-              });
+              });*/
                 });
 
                 this.ionLoader.hideLoader();

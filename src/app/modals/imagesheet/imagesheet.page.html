@@ -1,0 +1,28 @@
+
+	<ion-toolbar>
+		
+		<ion-title (click) ="closeModal('close')">Close</ion-title>
+	</ion-toolbar>
+
+
+<ion-content class="bg_color">
+	<div class="tab_container" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'Maths'">
+			<ion-item >
+				<div class="item_container">
+					<img [src]="img">
+				<br>
+			
+
+					
+					
+				</div>
+			</ion-item>
+
+			
+			
+		</ion-list>
+
+
+	</div>
+</ion-content>

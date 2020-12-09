@@ -61,7 +61,9 @@ export class DbService {
                         topicName: resp.topicName,
                         subVideoId: resp.subVideoId,
                         subtopicName: resp.subtopicName,
-                        videoId:resp.videoId
+                        videoId:resp.videoId,
+                        videosize:resp.videosize
+                        
                     }
 
                     resdata.push(localdata);

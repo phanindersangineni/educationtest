@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Students Exam list</ion-title>
+	</ion-toolbar>
+
+	
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container">
+		<ion-list lines="none">
+			<ion-item *ngFor ="let data of subjects">
+				<div class="item_container" (click) ="examanswers(data)">
+					<h3 class="d-flex">{{data.studentName}} </h3>
+					<h2 class="d-flex">Total Marks : {{data.totalMarks}}</h2>
+					<h2 class="d-flex">{{data.examType}} / {{data.examName}} / {{data.totalMarks}} Marks</h2>
+				</div>
+			</ion-item>
+			
+		</ion-list>
+
+
+
+	</div>
+</ion-content>

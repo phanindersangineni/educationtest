@@ -35,6 +35,11 @@ export class SingInPage implements OnInit {
    }
 
   ngOnInit() {
+    /*this.storage.ready().then(() => {
+    this.storage.get('studentid').then((studentid) => {
+     alert(studentid);
+    });
+  });*/
   }
 	
  goToForgotPassword() {

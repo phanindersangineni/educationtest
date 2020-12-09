@@ -28,7 +28,10 @@
 						class="btn" (click)="openModal(data)">In progress</ion-button>
 						
 						<ion-button size="small" *ngIf ="data.completed ==2 ||data.completed ==3" type="submit" disabled
-			            class="btn">Completed</ion-button>
+						class="btn">Completed</ion-button>
+						
+						<ion-button size="small" *ngIf ="data.completed ==4" type="submit" 
+			            class="btn" (click)="viewresult(data)">View Result</ion-button>
 					
 				</div>
 			</ion-item>

@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Students</ion-title>
+	</ion-toolbar>
+
+	
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container">
+		<ion-list lines="none">
+			<ion-item *ngFor ="let data of subjects">
+				<div class="item_container" (click) ="examlist(data)">
+					<h2 class="d-flex">{{data.studentName}} <span class="end">{{data.empSubject}}</span></h2>
+					<!--<br><h2 class="d-flex">{{data.studentName}} / {{data.empSubject}}</h2>-->
+				</div>
+			</ion-item>
+			
+		</ion-list>
+
+
+
+	</div>
+</ion-content>
