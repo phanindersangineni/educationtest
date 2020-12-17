@@ -86,6 +86,10 @@ const routes: Routes = [
     path: 'uploadedsheets',
     loadChildren: () => import('./uploadedsheets/uploadedsheets.module').then( m => m.UploadedsheetsPageModule)
   },
+  {
+    path: 'viewsheet',
+    loadChildren: () => import('./viewsheet/viewsheet.module').then( m => m.ViewsheetPageModule)
+  },
 
 
   {

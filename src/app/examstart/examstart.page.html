@@ -28,27 +28,29 @@
 						<h6 class="d-flex">Maximum Marks {{examques.maxMarks}}</h6>
 						<div *ngFor = "let ques of examques.sectionQuestions;index as i">
 						
-						Q{{i+1}}  ({{examques.maxMarks}} Marks):<div  [innerHTML] ="ques.question |safe">
+						Q{{i+1}}  ({{ques.maxMarks}} Marks):<div  [innerHTML] ="ques.question |safe">
+							
 							
 							</div>
 							<br>
+							<div *ngFor ="let ansed of studentanswerdata.subjects">
+								<span style="color:royalblue"
+								 *ngIf ="ansed.questionId == ques.questionId && ansed.questionanswers.length >0" >
+										Answer Uploaded
+									</span>
+									</div>
+									<br>
 
 							<div class="bottom_bar">
 								<ion-row *ngIf ="currentduration !=0"> 
 									
 									<ion-col size="10">
 										<ion-button size="large" class="btn" (click)="gotouploads(examques,ques)">
-											Answer Upload</ion-button>
+									     View / Upload Answer
+								</ion-button>
 									</ion-col>
 								</ion-row>
 
-								<ion-row *ngIf ="currentduration ==0"> 
-									
-									<ion-col size="10">
-										<ion-button size="large" class="btn" disabled>
-											Answer Upload</ion-button>
-									</ion-col>
-								</ion-row>
 							</div>
 							<br>
 							</div>
@@ -64,7 +66,7 @@
 			
 		</ion-list>
 
-		<ion-button size="large" type="submit"
+		<ion-button size="large" type="button"
 		class="btn" (click)="finalSubmit('1')" >Submit</ion-button>
 
 

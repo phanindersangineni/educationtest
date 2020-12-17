@@ -28,7 +28,7 @@ export class AppComponent {
      
     });
 
-    /*this.storage.ready().then(() => {
+    this.storage.ready().then(() => {
       this.storage.get('studentid').then((studentid) => {
         if (studentid == null) {
           this.navCtrl.navigateRoot(['./']);
@@ -38,7 +38,7 @@ export class AppComponent {
          
         }
       });
-    });*/
+    });
   }
 
   initializeApp() {

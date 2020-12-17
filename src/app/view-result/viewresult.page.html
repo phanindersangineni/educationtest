@@ -3,15 +3,15 @@
 		<ion-buttons slot="start">
 			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
 		</ion-buttons>
-		<ion-title>{{examname}}</ion-title>
+		<ion-title>{{examName}}</ion-title>
 	</ion-toolbar>
-
 	
+
 </ion-header>
 
 <ion-content class="bg_color">
-	<div class="tab_container" [ngSwitch]="tab">
-		<ion-list lines="none" *ngSwitchCase="'upcoming_test'">
+	<div class="tab_container" >
+		<ion-list lines="none" >
 			<ion-item *ngFor =" let examques of examquestions">
 				<div class="item_container">
 					
@@ -19,15 +19,23 @@
 					<div class="syllabus">
 						<h6 class="d-flex">{{examques.sectionName}}<span class="end">{{examques.description}}</span></h6>
 						<h6 class="d-flex">Maximum Marks {{examques.maxMarks}}</h6>
-						<div *ngFor = "let ques of examques.sectionQuestions;index as i">
+						<div *ngFor = "let ques of examques.sectionQuestionAnswer;index as i">
 						
-						Q{{i+1}}  ({{examques.maxMarks}} Marks):<div  [innerHTML] ="ques.question |safe">
+						Q{{i+1}}  ({{ques.maxMarks}} Marks):
+								<span style ="color:red" *ngIf="ques.marks"><b>Marks Obtained : {{ques.marks}} </b></span>
+								
+						
+						
+						<div  [innerHTML] ="ques.question |safe">
 							
 							</div>
 							<br>
+							<span style="color: red;">Status : {{ques.answeredStatus}} </span>
+							<br>
+							<span style="color: blue;" *ngIf="ques.marks">Comments : {{ques.comments}} </span>
 
 							<div class="bottom_bar">
-								<ion-row> 
+								<ion-row > 
 									
 									<ion-col size="10">
 										<ion-button size="large" class="btn" (click)="gotouploads(examques,ques)">
@@ -50,6 +58,7 @@
 			
 		</ion-list>
 
+	
 
 
 	</div>

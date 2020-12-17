@@ -22,6 +22,7 @@ import {
 import {  
   File  
 } from '@ionic-native/file/ngx'; 
+import { Httpd } from '@ionic-native/httpd/ngx';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import {
   
   providers: [
    VideoPlayer,
-   File
+   File,
+   Httpd
   ],
   declarations: [OfflinevideoPage]
 })

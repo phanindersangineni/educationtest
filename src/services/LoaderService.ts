@@ -14,8 +14,8 @@ export class LoaderService {
   showHideAutoLoader() {
 
     this.loadingController.create({
-      message: 'This Loader Will Auto Hide in 2 Seconds',
-      duration: 2000
+      message: 'Please wait Buffering !!!',
+      duration: 5000
     }).then((res) => {
       res.present();
 
@@ -31,6 +31,16 @@ export class LoaderService {
 
     this.loadingController.create({
       message: 'Please wait...'
+    }).then((res) => {
+      res.present();
+    });
+
+  }
+
+  showLoadermessage(message) {
+
+    this.loadingController.create({
+      message: message
     }).then((res) => {
       res.present();
     });

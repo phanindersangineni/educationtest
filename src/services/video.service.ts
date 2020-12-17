@@ -12,6 +12,60 @@ export class VideoService {
   private topicId:any;
   private subtopicId:any;
   private subExamSecId:any;
+  private attemptId:any;
+  private port:any;
+  private studentdata:any;
+  private subsecquesid:any;
+  private submissionStarted:any;
+  private videotype:any;
+
+  get getvideotype(){
+    return this.videotype;
+  }
+
+  set setvideotype(videotype:string){
+   this.videotype =videotype;
+  }
+
+  get getSubmissionStarted(){
+    return this.submissionStarted;
+  }
+
+  set setSubmissionStarted(submissionStarted:string){
+    this.submissionStarted =submissionStarted;
+  }
+
+  get getsubsecquesid() {
+    return this.subsecquesid;
+  }
+
+  set setsubsecquesid(subsecquesid:any) {
+    this.subsecquesid =subsecquesid;
+  }
+
+  get getStudentdata() {
+    return this.studentdata;
+  }
+
+  set setStudentata(studentdata:any) {
+    this.studentdata =studentdata;
+  }
+  
+  get getport() {
+    return this.port;
+  }
+
+  set setPort(port:number){
+    this.port =port;
+  }
+
+  get getattemptId(){
+    return this.attemptId;
+  }
+
+  set setattemptId(attemptId:string){
+   this.attemptId =attemptId;
+  }
 
   get getsubExamSecId(){
     return this.subExamSecId;

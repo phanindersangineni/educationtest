@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ExamanswersPage } from './examanswers.page';
 import { ExamanswersPageRoutingModule } from './examanswers-routing.module';
 import { SafePipe3 } from 'src/services/SafePipe3';
+import { SummaryPageModule } from '../modals/summary/summary.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SafePipe3 } from 'src/services/SafePipe3';
     FormsModule,
     IonicModule, 
 	TranslateModule,
-  ExamanswersPageRoutingModule
+  ExamanswersPageRoutingModule,
+  SummaryPageModule
   ],
   declarations: [ExamanswersPage,SafePipe3],
   exports: [

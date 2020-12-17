@@ -17,11 +17,11 @@ import { ImagesheetPage } from '../modals/imagesheet/imagesheet.page';
 
 
 @Component({
-  selector: 'app-uploadedsheets',
-  templateUrl: './uploadedsheets.page.html',
-  styleUrls: ['./uploadedsheets.page.scss'],
+  selector: 'app-viewsheet',
+  templateUrl: './viewsheet.page.html',
+  styleUrls: ['./viewsheet.page.scss'],
 })
-export class UploadedsheetsPage implements OnInit {
+export class ViewsheetPage implements OnInit {
   fileArray: Array<{ displayFile: any; base64File: string }> = [];
   imageArr: Array<{ displayImg: any; base64Img: string }> = [];
   studentanswerdata: any = {
@@ -44,7 +44,6 @@ export class UploadedsheetsPage implements OnInit {
   currentduration: any = 0;
   actionsheet :any;
   subscription:Subscription;
-  maxmarks :any= 0;
   constructor(
     private route: Router,
     private navCtrl: NavController,
@@ -95,7 +94,6 @@ export class UploadedsheetsPage implements OnInit {
     //this.actionsheet.dismiss();
   }
 
-  
 
 
   getimagearray() {
@@ -105,7 +103,6 @@ export class UploadedsheetsPage implements OnInit {
       console.log(element);
        if (element.questionid == this.subsecquesid) {
         this.imagearrays = element.questionanswers;
-        this.maxmarks =element.sectionMarks;
         this.marks = element.marks;
         this.comments = element.comments;
         console.log(this.imagearrays);
@@ -135,16 +132,6 @@ export class UploadedsheetsPage implements OnInit {
   }
 
   goback() {
-    console.log(this.marks);
-    if(this.marks  ==undefined) {
-      this.toastService.showToast("Please enter marks");
-    }
-   else if(parseInt(this.marks) > parseInt(this.maxmarks)) {
-      this.toastService.showToast('Marks alloated cannot be greater than max marks');
-    }else{
-    if(this.comments ==undefined) {
-      this.comments ='';
-    }
     let subjects = [];
     subjects = this.studentanswerdata.subjects;
     let subjectsarray = [];
@@ -153,6 +140,10 @@ export class UploadedsheetsPage implements OnInit {
         element.marks =this.marks,
         element.comments =this.comments
     
+      }else{
+        element.marks ='',
+        element.comments =''
+      
       }
       const data = {
         subExamSecId: element.subExamSecId,
@@ -162,10 +153,7 @@ export class UploadedsheetsPage implements OnInit {
         subjectId: element.subjectId,
         marks : element.marks,
         comments: element.comments,
-        answeredQnId:element.answeredQnId,
-        sectionName:element.sectionName,
-        maxMarks:element.maxMarks,
-        sectionMarks :element.maxMarks
+        answeredQnId:element.answeredQnId
       }
       console.log(subjectsarray);
       // let el = element;
@@ -194,7 +182,6 @@ export class UploadedsheetsPage implements OnInit {
 
     });
   }
-  }
 
 
 
@@ -208,23 +195,6 @@ export class UploadedsheetsPage implements OnInit {
   ionViewDidEnter() {
     this.subscription = this.platform.backButton.subscribeWithPriority(9999, () => {
       // do nothing
-    });
-
-    this.storage.ready().then(() => {
-      this.storage.get('quesobj').then((quesobj) => {
-        this.subsecquesid = quesobj.questionId
-
-        console.log(this.subsecquesid);
-
-      });
-
-      this.storage.get('studentanswerdata').then((studentanswerdata) => {
-        this.studentanswerdata = studentanswerdata;
-         console.log(this.studentanswerdata);
-        this.getimagearray();
-      });
-
-
     });
   }
 

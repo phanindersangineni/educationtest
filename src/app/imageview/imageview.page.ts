@@ -37,7 +37,7 @@ export class ImageViewPage implements OnInit {
  
 
   goback() {
-    this.navCtrl.navigateRoot(['./uploads']);
+    this.route.navigate(['./uploads']);
   }
   goToLeaderboard() {
     this.route.navigate(['./leaderboard']);

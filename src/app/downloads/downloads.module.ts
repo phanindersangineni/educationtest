@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { DownloadsPageRoutingModule } from './downloads-routing.module';
 
 import { DownloadsPage } from './downloads.page';
+import { ProgressBarComponent } from 'src/components/progress-bar/progress-bar';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { DownloadsPage } from './downloads.page';
     FormsModule,
     IonicModule,
 	TranslateModule,
-  DownloadsPageRoutingModule
+  DownloadsPageRoutingModule,
+  
   ],
-  declarations: [DownloadsPage]
+  declarations: [DownloadsPage,ProgressBarComponent]
 })
 export class DownloadsPageModule {}

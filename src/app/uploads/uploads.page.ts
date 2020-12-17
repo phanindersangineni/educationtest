@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ActionSheetController, AlertController, NavController, Platform, ToastController } from '@ionic/angular';
@@ -40,8 +40,9 @@ export class UploadsPage implements OnInit {
   subExamSecId = '1';
   subjectid: any = '1';
   currentduration: any = 0;
-  actionsheet :any;
-  subscription:Subscription;
+  actionsheet: any;
+  subscription: Subscription;
+  uploadstudentdata: any;
   constructor(
     private route: Router,
     private navCtrl: NavController,
@@ -55,30 +56,31 @@ export class UploadsPage implements OnInit {
     public countdownEventService: CountdownEventService,
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera,
+    private activeroute: ActivatedRoute,
     //private fileChooser: FileChooser,
     private plt: Platform,
     private filePath: FilePath,
-    private platform:Platform
+    private platform: Platform
   ) {
-    this.subjectid = this.VideoService.getSubjectId;
-    this.subExamSecId = this.VideoService.getsubExamSecId;
-
+   
     this.countdownEventService.getCountdown().subscribe((data) => {
       this.currentduration = data;
     });
 
+   /* this.activeroute.queryParams.subscribe(params => {
+      if (params && params.special) {
+        console.log(JSON.parse(params.special));
+        this.VideoService.setStudentata =params.special;
+        this.studentanswerdata = JSON.parse(params.special);
+        // this.uploadstudentdata =null;
+        //this.uploadstudentdata = JSON.parse(params.special);
+       
+        this.getimagearray();
+      }
+    });*/
+
     this.storage.ready().then(() => {
       this.storage.get('quesobj').then((quesobj) => {
-        this.subsecquesid = quesobj.questionId
-
-      });
-
-      this.storage.get('studentanswerdata').then((studentanswerdata) => {
-        console.log(studentanswerdata);
-        this.studentanswerdata = studentanswerdata;
-        // console.log(this.studentanswerdata);
-
-        //this.getimagearray();
       });
 
 
@@ -89,43 +91,20 @@ export class UploadsPage implements OnInit {
 
     });
 
-   /* this.autosubmitevent.getObservable().subscribe((data) => {
-      this.closeactionsheet();
-    });*/
-   
-
 
   }
 
   ngOnInit() {
+    
   }
 
-  closeactionsheet(){
+
+
+  closeactionsheet() {
     //this.actionsheet.dismiss();
   }
 
-  /*startcountdown() {
-    //var a = parseInt(this.currentduration);
-    var a = 0;
-    var b = parseInt(this.currentduration);
-    let interval = setInterval(() => {
-      //console.log(a++);
-      //  console.log(this.currentduration);
-      if (a == b) {
-        clearInterval(interval);
-        this.confirmforautosubmit();
-      }
-      this.currentduration = parseInt(this.currentduration) - 1;
-      this.storage.ready().then(() => {
-      this.storage.set('currentduration', this.currentduration);
-      });
 
-
-
-    }, 60000);
-
-
-  }*/
 
   getImages() {
     this.options = {
@@ -177,7 +156,7 @@ export class UploadsPage implements OnInit {
             const autosubmit: any = {
               submit: true
             }
-           
+
           }
         }
       ]
@@ -240,8 +219,8 @@ export class UploadsPage implements OnInit {
     }
   }
 
- async presentActionSheet() {
-     let actionSheet = await this.actionSheetCtrl.create({
+  async presentActionSheet() {
+    let actionSheet = await this.actionSheetCtrl.create({
       buttons: [
         {
           text: "From Gallery",
@@ -265,11 +244,11 @@ export class UploadsPage implements OnInit {
         }
       ]
     });
-      this.actionsheet = actionSheet;
+    this.actionsheet = actionSheet;
     actionSheet.present();
   }
 
-  openGallery(){
+  openGallery() {
 
     var options = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -290,7 +269,7 @@ export class UploadsPage implements OnInit {
 
   }
 
-  openCamera(){
+  openCamera() {
 
     const options: CameraOptions = {
       quality: 100,
@@ -300,7 +279,7 @@ export class UploadsPage implements OnInit {
     this.camera
       .getPicture(options)
       .then(imageData => {
-       // console.log("IMAGE DATA IS", imageData);
+        // console.log("IMAGE DATA IS", imageData);
         this.toastService.showToast("Image chosen successfully");
         this.convertToBase64(imageData, true);
       })
@@ -318,7 +297,7 @@ export class UploadsPage implements OnInit {
         console.log(filePath);
         this.base64.encodeFile(filePath).then(
           (base64File: string) => {
-           // console.log("BASE 64 IS", filePath.split(".").pop());
+            // console.log("BASE 64 IS", filePath.split(".").pop());
             if (isImage == false) {
               this.fileArray.push({
                 displayFile: filePath.split("/").pop(),
@@ -332,10 +311,10 @@ export class UploadsPage implements OnInit {
                 base64Img: base64File.split(",").pop() //same comment for image follows here.
               });
             }
-           // alert("11");
-           // this.toastService.showToast(base64File.split(",").pop());
-           // alert(base64File.split(",").pop());
-            let base64 ='data:image/gif;base64,'+base64File.split(",").pop();
+            // alert("11");
+            // this.toastService.showToast(base64File.split(",").pop());
+            // alert(base64File.split(",").pop());
+            let base64 = 'data:image/gif;base64,' + base64File.split(",").pop();
             this.getPhoto(base64);
             //console.log("LENGTH OF BASE64ARR", this.fileArray.length);
           },
@@ -350,29 +329,17 @@ export class UploadsPage implements OnInit {
 
 
   getimagearray() {
+    //alert("hi");
     let subjects = [];
-    subjects = this.studentanswerdata.subjects;
+    //let loaddata: any;
+    this.imagearrays =[];
+    let obj = this.studentanswerdata;
+    subjects = obj.subjects;
     subjects.forEach(element => {
-      /*let subjectanswer = [];
-       subjectanswer = element.subjectAnswer;
-
-       subjectanswer.forEach(element => {
-
-         if (this.subExamSecId == element.subExamSecId) {
-
-           let secanswers = element.sectionAnswers;
-           console.log(secanswers.questionid);
-           console.log(this.subsecquesid);
-           if (secanswers.questionid == this.subsecquesid) {
-             this.imagearrays = secanswers.answersheet;
-           }
-
-
-         }
-
-       });*/
-
-      if (element.questionid = this.subsecquesid) {
+      console.log(element);
+      if (element.questionId == this.subsecquesid) {
+        console.log(element.questionId);
+        console.log(this.subsecquesid);
         this.imagearrays = element.questionanswers;
       }
 
@@ -394,16 +361,18 @@ export class UploadsPage implements OnInit {
     subjects = this.studentanswerdata.subjects;
     let subjectsarray = [];
     subjects.forEach(element => {
-      if (element.questionid == this.subsecquesid) {
+      if (element.questionId == this.subsecquesid) {
         element.questionanswers = filteredItems
 
       }
+
       const data = {
+        questionId: element.questionId,
         subExamSecId: element.subExamSecId,
-        questionid: element.questionid,
         subExamQnId: element.subExamQnId,
         questionanswers: element.questionanswers,
-        subjectId: element.subjectId
+        subjectId: element.subjectId,
+
       }
       console.log(subjectsarray);
       // let el = element;
@@ -422,11 +391,12 @@ export class UploadsPage implements OnInit {
       subjects: subjectsarray
 
     }
+    this.VideoService.setStudentata = finaldata;
     this.storage.ready().then(() => {
-      this.storage.set('studentanswerdata', finaldata).then(() => {
-        console.log(this.studentanswerdata);
-        this.getimagearray();
-      });
+      /*this.storage.set('studentanswerdata', finaldata).then(() => {*/
+      console.log(this.studentanswerdata);
+      //this.getimagearray();
+      /* });*/
 
     });
 
@@ -439,10 +409,19 @@ export class UploadsPage implements OnInit {
     this.subscription = this.platform.backButton.subscribeWithPriority(9999, () => {
       // do nothing
     });
+
+    this.subjectid = this.VideoService.getSubjectId;
+    this.subExamSecId = this.VideoService.getsubExamSecId;
+    this.subsecquesid = this.VideoService.getsubsecquesid;
+    //alert(this.subsecquesid);
+    this.studentanswerdata = this.VideoService.getStudentdata;
+    this.getimagearray();
+
   }
 
   ionViewWillLeave() {
     this.subscription.unsubscribe();
+    this.storage.set('answereddata',this.VideoService.getStudentdata);
   }
 
 
@@ -457,25 +436,27 @@ export class UploadsPage implements OnInit {
 
   getPhoto(base64) {
 
-   // alert('123');
-    //let base64 = 'data:image/gif;base64,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';
-    if(base64 !=null){
-    this.imagearrays.push(base64);
+    // alert('123');
+    if (base64 != null) {
+      this.imagearrays.push(base64);
     }
     let subjects = [];
     subjects = this.studentanswerdata.subjects;
     let subjectsarray = [];
     subjects.forEach(element => {
-      if (element.questionid == this.subsecquesid) {
+      if (element.questionId == this.subsecquesid) {
+        console.log(element.questionId);
+        console.log(this.subsecquesid);
         element.questionanswers = this.imagearrays;
 
       }
       const data = {
+        questionId: element.questionId,
         subExamSecId: element.subExamSecId,
-        questionid: element.questionid,
         subExamQnId: element.subExamQnId,
         questionanswers: element.questionanswers,
-        subjectId: element.subjectId
+        subjectId: element.subjectId,
+        
       }
       console.log(subjectsarray);
       // let el = element;
@@ -494,88 +475,15 @@ export class UploadsPage implements OnInit {
       subjects: subjectsarray
 
     }
-    console.log(finaldata);
+
     //alert("dd");
-    this.storage.ready().then(() => {
-      this.storage.set('studentanswerdata', finaldata).then(() => {
-        // console.log(this.studentanswerdata);
-        this.getimagearray();
-      });
-    });
-    /* let subjects =[];
-     subjects = this.studentanswerdata.subjects;
-     const subjectsarray=[];
-     subjects.forEach(elem => {
-       console.log(elem);
-     let subjectanswer = [];
-     subjectanswer = elem.subjectAnswer;
-     
-     subjectanswer.forEach(element => {
-        console.log("EEEE");
-        console.log(this.subExamSecId);
-       if (this.subExamSecId == element.subExamSecId) {
- 
-         let secanswers = element.sectionAnswers;
-          if (secanswers.questionid == this.subsecquesid) {
-           secanswers.answersheet = this.imagearrays
-          
-           const secans={
-             subExamQnId:secanswers.subExamQnId,
-             questionid:secanswers.questionid,
-             answersheet:this.imagearrays
-           }
-           
-           const subsectionid ={
-             subExamSecId:element.subExamSecId,
-             sectionAnswers:secans,
-             questionid:secanswers.questionid
-           }
-           //let secarr =[];
-           //secarr.push(subsectionid);
-           let subjectans ={
-             subjectAnswer:[],
-             subjectId:this.subjectid
-           };
-           subjectans.subjectAnswer.push(subsectionid);
-         
-           
-           console.log("frist");
-          subjectsarray.push(subjectans);
-          console.log(subjectsarray);
-         }else{
-           let elearray =[];
-           elearray.push(element);
-           let subjectans ={
-             subjectAnswer:elearray,
-             subjectId:this.subjectid
-           };
-           console.log("second");
-           subjectsarray.push(subjectans);
- 
-         }
-         
- 
- 
-       }
- 
-     });
-     let finaldata :any ={
-       examId:'',
-       studentId:'',
-       startedTime:'',
-       endedTime:'',
-       subjects:subjectsarray
-     
-     }
-     
-     
-     console.log(JSON.stringify(finaldata));
-     this.storage.set('studentanswerdata', finaldata).then(() => {
-       console.log(this.studentanswerdata);
-       this.getimagearray();
-     });
- 
-   });*/
+    this.VideoService.setStudentata = finaldata;
+    this.studentanswerdata = finaldata;
+    console.log(this.studentanswerdata);
+    console.log(this.VideoService.getStudentdata);
+     this.getimagearray();
+   
+
 
   }
 

@@ -9,7 +9,18 @@
 </ion-header>
 
 <ion-content class="bg_color">
-	<vg-player (onPlayerReady)="onPlayerReady($event)">
+
+	<!--<ion-button expand="full" fill="outline" (click)="playLocalVideo()">Offline Video</ion-button>-->
+	<div class="container">
+		<div class="result d-flex correct_answers">
+			<h4>Note: If you are getting buffering issue,Please go back and click on play offline video again </h4>
+			
+		</div>
+	
+	</div>
+	 <br> <br>
+	 
+	 <vg-player (onPlayerReady)="onPlayerReady1($event)">
 		<vg-overlay-play></vg-overlay-play>
 		<vg-buffering></vg-buffering>
 	
@@ -37,22 +48,13 @@
 		</vg-controls>
 	
 		<video [vgMedia]="media" #media id="singleVideo" preload="auto" >
-		  <source [src]="base64" 
+		  <source [src]="base1" 
 		  type="video/mp4">
 		
 		</video>
-	  </vg-player> 
-		
-	  
-	  <!--<video controls>
-		<source type="video/mp4" [src]="base64">
-	</video>-->
-	  <!--<video controls>
-		<source type="video/mp4" src="data:video/mp4;base64,">
-	</video>-->
+		<br> <br>
 
-	<ion-button expand="full" fill="outline" (click)="playLocalVideo()">Offline Video</ion-button>
-
+	  </vg-player>
 	
 </ion-content>
 

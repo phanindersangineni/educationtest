@@ -1,0 +1,78 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{examName}}</ion-title>
+	</ion-toolbar>
+	<ion-segment >
+	
+			<ion-label style="color:white">
+				{{studentname}}
+			</ion-label>
+		
+	</ion-segment>
+
+
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="tab_container" >
+		<ion-list lines="none" >
+			<ion-item *ngFor =" let examques of examquestions">
+				<div class="item_container">
+					
+				
+					<div class="syllabus">
+						<h6 class="d-flex">{{examques.sectionName}}<span class="end">{{examques.description}}</span></h6>
+						<h6 class="d-flex">Maximum Marks {{examques.maxMarks}}</h6>
+						<div *ngFor = "let ques of examques.sectionQuestionAnswer;index as i">
+					
+						Q{{i+1}} : <div *ngFor ="let all of studentlooparray"> 
+							<div *ngIf ="all.questionid ==ques.questionId">
+								<b> Max Marks / Marks Obtained : {{ques.maxMarks}} / {{all.marks}} </b>
+								</div>
+
+								<!--<div *ngIf ="all.questionid !=ques.questionId">
+									<b> Max Marks / Marks Obtained : {{ques.maxMarks}} / 0 </b>
+									</div>-->	
+							</div>
+							
+
+							
+							
+							
+						
+							</div>
+						
+					</div>
+                    
+					<div class="syllabus">
+						<h6 class="d-flex" style="color: blue;">Final Summary</h6>
+						<h6 class="d-flex"  style="color: blue;">Total (Marks / Obtained) : {{totalmarks}} / {{allotedmarks}}</h6>
+					</div>
+
+
+
+						
+					
+
+				</div>
+			</ion-item>
+
+			
+		</ion-list>
+          <ion-row>
+		<ion-col size="5">
+			<ion-button size="large" fill="outline" (click)="closeModal(true)" class="btn" >
+				<b style="color:black">Submit </b></ion-button>
+		</ion-col>
+
+		<ion-col size="6">
+			<ion-button size="large"  (click)="closeModal(false)" class="btn" >back</ion-button>
+		</ion-col>
+		</ion-row>
+
+
+	</div>
+</ion-content>

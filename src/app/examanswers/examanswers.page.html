@@ -3,8 +3,15 @@
 		<ion-buttons slot="start">
 			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
 		</ion-buttons>
-		<ion-title>Unit Test</ion-title>
+		<ion-title>{{examName}}</ion-title>
 	</ion-toolbar>
+	<ion-segment >
+	
+			<ion-label style="color:white">
+				{{studentname}}
+			</ion-label>
+		
+	</ion-segment>
 
 
 </ion-header>
@@ -22,7 +29,7 @@
 						<div *ngFor = "let ques of examques.sectionQuestionAnswer;index as i">
 						
 						Q{{i+1}}  ({{ques.maxMarks}} Marks): <div *ngFor ="let all of studentlooparray"> 
-							<div *ngIf ="all.questionid ==ques.questionId"><span style ="color:red"><b>Marks Alloated : {{all.marks}} </b></span>
+							<div *ngIf ="all.questionid ==ques.questionId"><span style ="color:red"><b>Marks Obtained : {{all.marks}} </b></span>
 								</div>
 							</div>
 						
@@ -58,7 +65,7 @@
 		</ion-list>
 
 		<ion-button size="large" type="submit"
-		class="btn" (click)="finalSubmit('1')" >Submit</ion-button>
+		class="btn" (click)="summary()" >Submit</ion-button>
 
 
 	</div>

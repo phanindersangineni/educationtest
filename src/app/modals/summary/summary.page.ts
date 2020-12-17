@@ -5,15 +5,13 @@ import { Storage } from '@ionic/storage';
 import { VideoService } from 'src/services/video.service';
 import { ToastService } from 'src/services/toastr.service';
 import { LoaderService } from 'src/services/LoaderService';
-import { SummaryPage } from '../modals/summary/summary.page';
 import { ModalController } from '@ionic/angular';
-
 @Component({
-  selector: 'app-examanswers',
-  templateUrl: './examanswers.page.html',
-  styleUrls: ['./examanswers.page.scss'],
+  selector: 'app-summary',
+  templateUrl: './summary.page.html',
+  styleUrls: ['./summary.page.scss'],
 })
-export class ExamanswersPage implements OnInit {
+export class SummaryPage implements OnInit {
   tab: string = "Maths";
   attemptid: any = '';
   subjects: any = [];
@@ -30,6 +28,7 @@ export class ExamanswersPage implements OnInit {
   interval: any;
   studentname: any = '';
   currentduration: any = 0;
+  newscorearray =[];
   studentanswerdata: any = {
     subExamAttemptId: '',
     subjects: [],
@@ -46,13 +45,15 @@ export class ExamanswersPage implements OnInit {
   studentlooparray = [];
   examName: any = '';
   admNo: any = '';
+  totalmarks: any = 0;
+  allotedmarks: any = 0;
   constructor(private route: Router,
     private examService: ExamService,
     private storage: Storage,
     private videoService: VideoService,
     private toastrService: ToastService,
     private loaderService: LoaderService,
-    public modalController: ModalController) {
+    private modalController: ModalController) {
     this.storage.ready().then(() => {
       this.storage.get('studentid').then((studentid) => {
         this.studentid = studentid;
@@ -67,7 +68,7 @@ export class ExamanswersPage implements OnInit {
         if (studentanswerdata != null) {
           this.studentlooparray = studentanswerdata.subjects;
         }
-     
+
       });
 
       this.storage.get('evaluationexamdata').then((evaluationexamdata) => {
@@ -75,8 +76,8 @@ export class ExamanswersPage implements OnInit {
         this.studentname = evaluationexamdata.studentName;
         this.admNo = evaluationexamdata.admNo;
 
-        this.studentanswerdata.admNo =this.admNo;
-        this.studentanswerdata.examName =this.examName ;
+        this.studentanswerdata.admNo = this.admNo;
+        this.studentanswerdata.examName = this.examName;
 
       });
 
@@ -86,19 +87,20 @@ export class ExamanswersPage implements OnInit {
   }
 
   ngOnInit() {
-  
+
   }
-  
+
   ionViewDidEnter() {
     this.storage.get('studentanswerdata').then((studentanswerdata) => {
       if (studentanswerdata != null) {
         this.studentlooparray = studentanswerdata.subjects;
+        console.log(this.studentlooparray);
       }
 
     });
 
   }
-  
+
 
   syllabus_topics() {
     this.route.navigate(['./syllabus-topics']);
@@ -112,6 +114,7 @@ export class ExamanswersPage implements OnInit {
     this.examService.post(admindata, '/evaluation/examQuestions').subscribe(examdata => {
       this.examquestions = examdata;
       console.log(this.examquestions);
+       this.createnewjson();
 
     }, error => {
       // this.errors = error
@@ -123,185 +126,142 @@ export class ExamanswersPage implements OnInit {
     this.route.navigate(['./examlist']);
   }
 
-  async summary() {
-    const modal = await this.modalController.create({
-      component: SummaryPage,
+  @HostListener("window:finalsummaryscore",['$event', '$event.detail.param2'])
+  finalSummaryscore(event,param2) {
+   this.allotedmarks =param2;
+  }
+ 
+  @HostListener("window:summaryscore",['$event', '$event.detail.param1'])
+  summaryScore(event,param1) {
+    let finalarray = param1;
+    let finalindx =0;
+    let marksobtained =0;
+    let finallooparray =function(finalindx)
+    {
+      let finalrecords =finalarray[finalindx];
+      let qnsToBeAttempt =3
+      //finalrecords.qnsToBeAttempt;
+      let marks =[];
+       marks =finalrecords.subarray.sort(function(a, b){return b-a});
+    for(var x = 0 ; x < qnsToBeAttempt ;x ++) {
+         if(marks[x] !=undefined) {
+          marksobtained =marksobtained+marks[x];
+         }
 
-    });
+         if(x == qnsToBeAttempt -1){
+          
+          if(finalindx ==finalarray.length-1){
+            var event = new CustomEvent("finalsummaryscore",
+            { detail: {'param2':marksobtained  } });
+            window.dispatchEvent(event);
+ 
+       
+          }else{
+            finalindx =finalindx+1;
+            finallooparray(finalindx); 
+          }
 
-    modal.onDidDismiss().then((dataReturned) => {
-      console.log(dataReturned);
-      if(dataReturned.data ==true){
-        this.finalsubmit();
-      }
-    
-    });
-    return await modal.present();
+         }
+       }
 
+    }
+    finallooparray(finalindx);
   }
 
-  gotouploads(examques, ques) {
-    this.newexamques = examques;
-    this.newques = ques;
-    this.storage.ready().then(() => {
-      this.storage.get('studentanswerdata').then((studentanswerdata) => {
-        this.videoService.setsubExamSecId = examques.subExamSecId;
+  createnewjson() {
 
-        if (studentanswerdata == null) {
-          let answersht = [];
-          const seciddata = {
-            subExamSecId: this.newexamques.subExamSecId,
-            questionid: this.newques.questionId,
-            subExamQnId: this.newques.subExamQnId,
-            questionanswers: this.newques.answers,
-            subjectId: this.videoService.getSubjectId,
-            answeredQnId:this.newques.answeredQnId,
-            sectionName:this.newexamques.sectionName,
-            maxMarks:this.newexamques.maxMarks,
-            sectionMarks :this.newques.maxMarks
+    this.examquestions.forEach(element => {
+      if (this.totalmarks == 0) {
+        this.totalmarks = parseInt(element.maxMarks);
+      } else {
+        this.totalmarks = parseInt(this.totalmarks) + parseInt(element.maxMarks);
+      }
 
-          };
-          //let uploadedarray = [];
-          //uploadedarray.push(seciddata);
+    });
 
+    var mainindx = 0;
+    var mainrecords = this.examquestions;
+    let answerarray = this.studentlooparray;
+    let newscorearray =[];
+    let subarray =[];
+    
+
+    var looparray = function (mainindx) {
+      let records = mainrecords[mainindx];
+
+      let sectionid = records.subExamSecId;
 
 
-          this.studentanswerdata.subjects.push(seciddata);
-          console.log(this.studentanswerdata);
+      var childindx = 0;
 
-          this.storage.set('quesobj', ques).then(() => {
-            this.storage.set('studentanswerdata', this.studentanswerdata).then(() => {
-              this.route.navigate(['./uploadedsheets']);
-            });
-          });
+      var childarray = function (childindx) {
+        let childrecords = answerarray[childindx];
+        if (childrecords.subExamSecId == sectionid) {
+        subarray.push(childrecords.marks);
+
+        if (answerarray.length-1 == childindx) {
+
+          if (mainrecords.length - 1 == mainindx) {
+           const secdata:any ={
+            sectionid:sectionid,
+            qnsToBeAttempt:records.qnsToBeAttempt,
+            subarray:subarray
+           }
+
+           newscorearray.push(secdata);
+           var event = new CustomEvent("summaryscore",
+           { detail: {'param1':newscorearray  } });
+           window.dispatchEvent(event);
+
+           //console.log(newscorearray);
+
+          } else {
+            mainindx = mainindx + 1;
+            looparray(mainindx);
+          }
 
         } else {
-          this.studentanswerdata = studentanswerdata;
+          childindx = childindx + 1;
+          childarray(childindx);
+        }
 
-          console.log(this.studentanswerdata);
-          let subjects = [];
-          subjects = this.studentanswerdata.subjects;
-          let cancontinue = true;
+        
+        } else {
 
-          var totalrecords = this.studentanswerdata.subjects.length;
-          var indx = 0;
-          let studanswerda = this.studentanswerdata.subjects;
-          console.log(studanswerda);
+          if (answerarray.length - 1 == childindx) {
 
-          console.log("<<<<>>>>>");
+            if (mainrecords.length - 1 == mainindx) {
 
-          console.log(studanswerda.length);
 
-          var indx1 = 0;
-          let totalrecords1 = studanswerda.length;
-          let isfalse = false;
-          var looparray1 = function (indx1) {
-
-            var answersrows = studanswerda[indx1];
-            console.log(answersrows);
-
-            if (answersrows.questionid == ques.questionId) {
-              //this.route.navigate(['./uploads']);
-              isfalse = true;
             } else {
-              // this.newsectionupload(examques, ques);
-
+              mainindx = mainindx + 1;
+              looparray(mainindx);
             }
 
-            if (totalrecords1 - 1 == indx1) {
-              if (isfalse) {
-                console.log(studanswerda);
-                //this.forwardnew(); 
-                //window.location.href = '/uploads';
-                var event = new CustomEvent("forwardupload");
-                window.dispatchEvent(event);
-
-              } else {
-                var event1 = new CustomEvent("newsectionupload4");
-                window.dispatchEvent(event1);
-                //this.newsectionupload(examques, ques);
-              }
-            } else {
-              indx1 = indx1 + 1;
-              looparray1(indx1);
-            }
-
+          } else {
+            childindx = childindx + 1;
+            childarray(childindx);
           }
-          looparray1(indx1);
-
-
-
 
         }
 
-      })
-    });
 
 
-  }
-
-  @HostListener("window:forwardupload")
-  forwardnew() {
-    this.route.navigate(['./uploadedsheets']);
-  }
-
-  @HostListener("window:newsectionupload4")
-  newsectionupload() {
-    console.log("newsectionupload");
-    this.videoService.setsubExamSecId = this.newexamques.subExamSecId;
-    let answersht = [];
-
-    let subjects = [];
-    subjects = this.studentanswerdata.subjects;
-    let subjectsarray = [];
-    let newrecord = false;
-    subjects.forEach(element => {
-      console.log(element);
-      if (element.questionid != this.newques.questionId) {
-
-        subjectsarray.push(element);
-        console.log(subjectsarray);
-      } else {
-        newrecord = true;
       }
+      childarray(childindx);
 
-
-    });
-    //subjectsarray.push();
-
-    const seciddata = {
-      subExamSecId: this.newexamques.subExamSecId,
-      questionid: this.newques.questionId,
-      subExamQnId: this.newques.subExamQnId,
-      questionanswers: this.newques.answers,
-      subjectId: this.videoService.getSubjectId,
-      answeredQnId:this.newques.answeredQnId,
-      sectionName:this.newexamques.sectionName,
-      maxMarks:this.newexamques.maxMarks,
-      sectionMarks :this.newques.maxMarks
 
     };
-    subjects.push(seciddata);
-
-
-    let finaldata: any = {
-      examId: '',
-      studentId: '',
-      startedTime: '',
-      endedTime: '',
-      subjects: subjects
-
-    }
-    this.storage.ready().then(() => {
-      this.storage.set('quesobj', this.newques).then(() => {
-        this.storage.set('studentanswerdata', finaldata).then(() => {
-          this.route.navigate(['./uploadedsheets']);
-        });
-      });
-    });
-
+    looparray(mainindx);
   }
 
+  async closeModal(message) {
+    const onClosedData: string = message;
+    await this.modalController.dismiss(onClosedData);
+  }
+
+  
+ 
   @HostListener("window:answerevaluationerror")
   evaluateanswererror() {
     this.toastrService.showToast('Please evaluate all the answered questions');
@@ -319,15 +279,13 @@ export class ExamanswersPage implements OnInit {
           admNo: this.admNo,
           attemptid: this.attemptid,
           answers: studentanswerdata.subjects,
-          empId:this.studentid
+          empId: this.studentid
         }
-
-        console.log(JSON.stringify(finalsubmisiondata));
 
         this.loaderService.showLoader();
         this.examService.post(finalsubmisiondata, '/evaluation/saveEvaluation').subscribe(result => {
-          console.log(result);
-           //alert(JSON.stringify(result));
+         // console.log(result);
+
           this.loaderService.hideLoader();
           if (result.status == 'Success') {
             this.toastrService.showToast('Evaluation of exam successful');
@@ -404,7 +362,6 @@ export class ExamanswersPage implements OnInit {
 
 
               } else {
-                console.log("totalrecords"+totalrecords);
                 if (totalrecords - 1 == indx1) {
 
                   if (mainrecord - 1 == mindx) {
@@ -412,7 +369,6 @@ export class ExamanswersPage implements OnInit {
                     var event23 = new CustomEvent("evaluationsubmission");
                     window.dispatchEvent(event23);
                   } else {
-                    mindx =mindx+1;
                     mainarray(mindx);
                   }
 

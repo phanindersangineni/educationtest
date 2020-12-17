@@ -15,7 +15,9 @@
 			<ion-item *ngFor ="let data of subjects">
 				<div class="item_container" (click) ="examlist(data)">
 					<h2 class="d-flex">{{data.studentName}} <span class="end">{{data.empSubject}}</span></h2>
-					<!--<br><h2 class="d-flex">{{data.studentName}} / {{data.empSubject}}</h2>-->
+					
+				 <span *ngIf="data.admNo == admNo">
+						<h2 style ="color:red">Evaluation In Progress</h2> </span>
 				</div>
 			</ion-item>
 			

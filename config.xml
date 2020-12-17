@@ -5,6 +5,7 @@
     <author email="Psangi@varsitymgmt.com" href="http://srichaitanya.com/">Sri chaitanya</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -13,6 +14,7 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="http://*/*" />
     <allow-navigation href="file://*/*" />
+    <allow-intent href="*" />
     <access origin="cdvfile://*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />

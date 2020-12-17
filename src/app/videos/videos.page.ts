@@ -38,8 +38,8 @@ export class VideosPage implements OnInit {
   vidarray: any;
   storagesize = 0;
   studentid: any = '';
-  videoId :any ='';
-  ispresent :boolean= true;
+  videoId: any = '';
+  ispresent: boolean = true;
   readonly database_name: string = "neet.db";
   readonly table_name: string = "offlinevideos";
   //private fileTransfer: FileTransferObject;
@@ -69,32 +69,33 @@ export class VideosPage implements OnInit {
   }
 
   ngOnInit() {
+    this.tab = this.videoService.getvideotype;
     this.storage.ready().then(() => {
       this.storage.get('storagesize').then((storagesize) => {
         this.storagesize = storagesize;
-       // alert(this.storagesize);
+        // alert(this.storagesize);
       });
       this.storage.get('studentid').then((studentid) => {
         // alert("hi")
         this.studentid = studentid;
         this.storage.get('videoId').then((videoId) => {
-          this.videoId =videoId;
-         this.loadvideos();
+          this.videoId = videoId;
+          this.loadvideos();
         });
       });
     });
 
     this.dbService.dbState().subscribe((res) => {
-     
+
     });
-   
+
     if (this.platform.is('ios')) {
       this.storageDirectory = this.file.documentsDirectory;
     }
     else if (this.platform.is('android')) {
 
 
-     /* this.file.checkDir(this.file.dataDirectory, 'chaitanya').then(response => {
+      /*this.file.checkDir(this.file.dataDirectory, 'chaitanya').then(response => {
         console.log('Directory exists' + response);
       }).catch(err => {
         console.log('Directory doesn\'t exist' + JSON.stringify(err));
@@ -110,10 +111,17 @@ export class VideosPage implements OnInit {
   }
 
   playLocalVideo(data) {
-
-    this.videoService.setbase64String = data.base64;
+    /*this.videoService.setbase64String = data.base64;
     this.videoService.setSubTopicId = data.subVideoId;
-    this.route.navigate(['./offlinevideo']);
+    //this.route.navigate(['./offlinevideo']);*/
+
+    this.videoPlayer.play('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/'+data.base64).then(() => {
+      console.log('video completed');
+    }).catch(err => {
+      //alert(err);
+    });
+ 
+
   }
   playRemoteVideo(vidar) {
     this.videoService.setVideoUrl = vidar.url;
@@ -126,22 +134,28 @@ export class VideosPage implements OnInit {
   }
 
   loadvideos() {
+    this.dbService.getAlldownloads(this.videoId).then(item => {
+      //this.loadrService.hideLoader();
+      this.toastr.showToast("Offline videos loaded successfully");
+    });
     const admindata: any = {
       videoId: this.videoId
     }
-    this.examService.post(admindata,'/student/subVideos').subscribe(examdata => {
+    this.videoarray = [];
+    //this.loadrService.showLoader();
+    this.examService.post(admindata, '/student/subVideos').subscribe(examdata => {
       this.videoarray = examdata;
-      if(this.videoarray.length ==0){
-        this.ispresent=false;
-      }else{
-        this.ispresent=true;
+      //alert(JSON.stringify(this.videoarray));
+      if (this.videoarray.length == 0) {
+        this.ispresent = false;
+      } else {
+        this.ispresent = true;
       }
     });
 
-    this.dbService.getAlldownloads(this.videoId).then(item => {
 
-    });
-    
+
+
   }
 
   getPermission(vidarry) {
@@ -195,6 +209,7 @@ export class VideosPage implements OnInit {
   download(vidarry) {
     //here encoding path as encodeURI() format. 
     this.platform.ready().then(() => {
+      //this.ionLoader.showLoadermessage('Downloading :0 %');
       this.ionLoader.showLoader();
       //this.storageDirectory = this.file.externalRootDirectory + 'chaitanya/';
       this.storageDirectory = this.file.dataDirectory + 'chaitanya/';
@@ -203,44 +218,112 @@ export class VideosPage implements OnInit {
       this.fileTransfer = this.transfer.create();
       //alert("Download Started");
       // here iam mentioned this line this.file.externalRootDirectory is a native pre-defined file path storage. You can change a file path whatever pre-defined method.  
-      this.fileTransfer.download(url, this.storageDirectory + vidarry.fileName, true).then((entry) => {
-        //here logging our success downloaded file path in mobile.  
-         //alert('download completed: ' + entry.toURL());
-       // alert("download completed" + this.storageDirectory);
+      //vidarry.fileName
+      let storagefilepath = vidarry.fileName;
 
-        this.getBase64StringByFilePath(vidarry);
+      this.fileTransfer.download(url, this.storageDirectory + storagefilepath, true).then((entry) => {
+        //here logging our success downloaded file path in mobile.  
+        //alert('download completed: ' + entry.toURL());
+        // alert("download completed" + this.storageDirectory);
+
+        //this.getBase64StringByFilePath(vidarry);
+        try {
+          
+          this.dbService.createtable().then(item => {
+            /*let storagefilepath =vidarry.fileName;
+            if(vidarry.fileName =='ZOOLOGY_(62_MB).mp4') {
+             storagefilepath ='zoology.mp4'
+            }*/
+            this.dbService.inserttable(vidarry, storagefilepath).then(item1 => {
+              // alert(JSON.stringify(item1));
+              //this.getRows();
+              this.storagesize = this.storagesize + parseInt(vidarry.videosize);
+              this.storage.set('storagesize', this.storagesize);
+
+              this.alreadydownloaded.push(vidarry.subVideoId);
+              const updatdata: any = {
+                subVideoId: vidarry.subVideoId,
+                isdownloaded: 'Y',
+                studentId: this.studentid
+              }
+              this.examService.post(updatdata, '/student/downloadStatus').subscribe(examdata => {
+                this.loadvideos();
+                this.toastr.showToast('Download Completed');
+
+
+                /* this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/',vidarry.fileName).then( data => {
+   
+                   //alert("File removed");
+                 }).catch( error => {
+                   alert(error);
+               });*/
+              });
+
+              this.ionLoader.hideLoader();
+            })
+          })
+
+
+
+
+
+        } catch (error) {
+          alert(error);
+        }
         // this.ionLoader.hideLoader();
       }, (error) => {
         this.ionLoader.hideLoader();
-         alert("error connecting external url");
+        this.loadrService.hideLoader();
+        alert("error connecting external url");
         //here logging our error its easier to find out what type of error occured.  
         alert(JSON.stringify(error));
 
       });
 
+      /*this.fileTransfer.onProgress((progress) => {
+        this.loadrService.hideLoader();
+        let downloadProgress = Math.round((progress.loaded / progress.total) * 100) + '%';
+            console.log('Downloading progress ...', downloadProgress);
+            this.loadrService.showLoadermessage('Downloading :'+downloadProgress+' %');
+
+            
+        });*/
+
 
     });
   }
 
+
   deletevideo(videarray) {
 
-    this.dbService.delete(videarray.subVideoId,videarray.videoId).then(item1 => {
+    this.dbService.delete(videarray.subVideoId, videarray.videoId).then(item1 => {
       //alert(JSON.stringify(item1));
       this.storage.get('storagesize').then((storagesize) => {
         this.storagesize = this.storagesize - parseInt(storagesize);
 
         this.storage.set('storagesize', this.storagesize).then(() => {
 
-          this.alreadydownloaded = this.alreadydownloaded.filter(item => item !== videarray.subVideoId)
-          this.toastr.showToast("Video removed successfully");
-          const updatdata :any ={
-            subVideoId:videarray.subVideoId,
-            isdownloaded:'N',
-            studentId: this.studentid
-          }
-          this.examService.post(updatdata,'/student/downloadStatus').subscribe(examdata => {
-            this.loadvideos();
+          this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/', 
+          videarray.base64).then(data => {
+
+            //alert("File removed");
+
+
+            this.alreadydownloaded = this.alreadydownloaded.filter(item => item !== videarray.subVideoId)
+            this.toastr.showToast("Video removed successfully");
+            const updatdata: any = {
+              subVideoId: videarray.subVideoId,
+              isdownloaded: 'N',
+              studentId: this.studentid
+            }
+            this.examService.post(updatdata, '/student/downloadStatus').subscribe(examdata => {
+              this.loadvideos();
+            });
+
+          }).catch(error => {
+            alert(error);
           });
+
         });
       });
 
@@ -253,19 +336,23 @@ export class VideosPage implements OnInit {
   getBase64StringByFilePath(vidarry) {
     return new Promise(async (resolve) => {
       //let res:any = await this.file.resolveLocalFilesystemUrl('file:///storage/emulated/0/chaitanya/sample-mp4-file.mp4');
-      let res: any = await this.file.resolveLocalFilesystemUrl('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/'+vidarry.fileName);
+      let res: any = await this.file.resolveLocalFilesystemUrl('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/' + vidarry.fileName);
       alert("conversion start");
       res.file((resFile) => {
         let reader = new FileReader();
         reader.readAsDataURL(resFile);
         reader.onloadend = async (evt: any) => {
+
           let encodingType = "data:video/mp4;base64,";
           let OriginalBase64 = evt.target.result.split(',')[1]; // Remove the "data:video..." string.
-          let decodedBase64 = atob(OriginalBase64); // Decode the incorrectly encoded base64 string.
-          let encodedBase64 = btoa(decodedBase64); // re-encode the base64 string (correctly).
-          let newBase64 = encodingType + encodedBase64; // Add the encodingType to the string.
+          let blob = new Blob([OriginalBase64], { type: "video/mp4" });
+          alert(blob);
+          // let decodedBase64 = atob(OriginalBase64); // Decode the incorrectly encoded base64 string.
+          //let encodedBase64 = btoa(decodedBase64); // re-encode the base64 string (correctly).
+          // let newBase64 = encodingType + encodedBase64; // Add the encodingType to the string.
           //alert("conversion done");
-          this.videoService.setbase64String = newBase64;
+          //this.videoService.setbase64String = newBase64;
+          let newBase64 = '';
 
           try {
             this.dbService.createtable().then(item => {
@@ -277,31 +364,31 @@ export class VideosPage implements OnInit {
                 this.storage.set('storagesize', this.storagesize);
                 this.toastr.showToast('Download Completed');
                 this.alreadydownloaded.push(vidarry.subVideoId);
-                const updatdata :any ={
-                  subVideoId:vidarry.subVideoId,
-                  isdownloaded:'Y',
+                const updatdata: any = {
+                  subVideoId: vidarry.subVideoId,
+                  isdownloaded: 'Y',
                   studentId: this.studentid
                 }
-                this.examService.post(updatdata,'/student/downloadStatus').subscribe(examdata => {
+                this.examService.post(updatdata, '/student/downloadStatus').subscribe(examdata => {
                   this.loadvideos();
-                  
-                 /* resFile.remove(function() {
-                    // if the file has been successfully removed
-                    alert("File Removed");
-                }, function(error) {
-                  alert(error);
-                    // if there was an error removing the file
-                }, function() {
-                    // if the file does not exist
-                    alert("File dosent exists");
-                });*/
 
-               /* this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/',vidarry.fileName).then( data => {
+                  /* resFile.remove(function() {
+                     // if the file has been successfully removed
+                     alert("File Removed");
+                 }, function(error) {
+                   alert(error);
+                     // if there was an error removing the file
+                 }, function() {
+                     // if the file does not exist
+                     alert("File dosent exists");
+                 });*/
 
-                  //alert("File removed");
-                }).catch( error => {
-                  alert(error);
-              });*/
+                  /* this.file.removeFile('file:///data/user/0/com.srichaitanya.neetdb/files/chaitanya/',vidarry.fileName).then( data => {
+   
+                     //alert("File removed");
+                   }).catch( error => {
+                     alert(error);
+                 });*/
                 });
 
                 this.ionLoader.hideLoader();
@@ -328,7 +415,7 @@ export class VideosPage implements OnInit {
   loadlocalarray(records) {
     this.localvideoarray = [];
     if (records.length > 0) {
-      
+
       for (var i = 0; i < records.length; i++) {
         // this.localvideoarray.push();
         let resp = records[i];
@@ -345,7 +432,7 @@ export class VideosPage implements OnInit {
         }
         this.localvideoarray.push(localdata);
         this.alreadydownloaded.push(resp.subVideoId);
-         }
+      }
 
     }
   }

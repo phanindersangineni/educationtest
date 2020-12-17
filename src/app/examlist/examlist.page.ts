@@ -51,7 +51,7 @@ syllabus_topics() {
    });
   }
   examanswers(data) {
-    this.storage.set('examdata',data);
+    this.storage.set('evaluationexamdata',data);
     this.storage.set('subExamAttemptId',data.subExamAttemptId);
     this.route.navigate(['./examanswers']);
   }

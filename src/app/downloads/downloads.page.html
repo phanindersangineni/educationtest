@@ -15,7 +15,9 @@
 	</div>
 </ion-header>
 
+
 <ion-content class="bg_color">
+	
 	<div class="container">
 		<!--<div class="whats_next">
 			<h2>{{'whats_next' | translate}}</h2>
@@ -23,7 +25,8 @@
 			<h4 class="d-flex">2 days to go <span class="end">{{'view_all' | translate}}</span></h4>
 		</div>-->
 
-		-<div class="whats_next">
+	
+		<div class="whats_next">
 			<h2>Todays Exam</h2>
 			<h3>Comming Soon</h3>
 			<!--<h4 class="d-flex">2 days to go <span class="end">{{'view_all' | translate}}</span></h4>-->
@@ -31,26 +34,14 @@
 
 		<div class="menu_container">
 			<ion-row>
-				<!--<ion-col size="6">
-					<div class="menu d-flex" (click)="videos()" >
-						<h2>Offline Videos</h2>
-						<div class="menu_img end">
-							<img src="assets/images/ic_about.png">
-						</div>
-					</div>
-				</ion-col>
-
-				<ion-col size="6">
-					<div class="menu d-flex" (click)="videos()">
-						<h2>Online Videos</h2>
-						<div class="menu_img end">
-							<img src="assets/images/ic_insights.png">
-						</div>
-					</div>
-				</ion-col>-->
 				
+
 				<ion-col size="11">
-					<ion-button size="large"  (click)="videos()" class="btn" > Training Videos</ion-button>
+					<ion-button size="large"  (click)="videos()" class="btn" > All Videos</ion-button>
+				</ion-col>
+				<br>
+				<ion-col size="11">
+					<ion-button size="large"   (click)="allvideos()" class="btn default" > Offline Videos</ion-button>
 				</ion-col>
 				
 				<!--<ion-col size="6">

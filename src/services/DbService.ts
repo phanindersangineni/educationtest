@@ -80,7 +80,8 @@ export class DbService {
     createtable(): Promise<any> {
         return this.storage.executeSql(`
         CREATE TABLE IF NOT EXISTS offlinevideos (pid INTEGER PRIMARY KEY,videoId INTEGER,facultyName
-           TEXT,Subject TEXT,description TEXT,topicName TEXT,subVideoId INTEGER,subtopicName TEXT, base64 TEXT,videosize REAL)
+           TEXT,Subject TEXT,description TEXT,topicName TEXT,subVideoId INTEGER,subtopicName TEXT,
+            base64 TEXT,videosize REAL)
         `, [])
             .then(res => {
 
@@ -203,47 +204,69 @@ export class DbService {
         });
     }
 
-    createOfflinewatchtable(): Promise<any> {
+    createsubjectsummarytable(): Promise<any> {
         return this.storage.executeSql(`
-        CREATE TABLE IF NOT EXISTS offlinevideowatch (pid INTEGER PRIMARY KEY, subVideoId INTEGER,
-            watchtime REAL, totaltime REAL, lefttime REAL)
+        CREATE TABLE IF NOT EXISTS subjectsummary (pid INTEGER PRIMARY KEY, studentId INTEGER,
+            marks REAL,sectionId INTEGER)
         `, [])
             .then(res => {
 
             })
             .catch(e => {
-                alert("error " + JSON.stringify(e))
+               // alert("error " + JSON.stringify(e))
             });
 
 
     }
 
-    insertorupdatewatchtable(videoarr):Promise<any> {
+    insertsummary(videoarr):Promise<any> {
 
-        return this.storage.executeSql('SELECT * FROM offlinevideowatch WHERE subVideoId = ?', [videoarr.subVideoId]).then(res => {
-            //  alert(JSON.stringify(res.rows));
-              //this.ispresent.next(res.rows);
-             if(res.rows.length >0){
-
-                this.storage.executeSql(`
-                INSERT INTO offlinevideowatch (subVideoId,watchtime,totaltime,lefttime) 
-                VALUES ('${videoarr.subVideoId}','${videoarr.watchtime}',
-                '${videoarr.totaltime}','${videoarr.lefttime}')
-              `, [])
-                .then(insertres => {
-                    alert("checking");
-                    alert(JSON.stringify(insertres));
-                   
-                }); 
-                 
-
-             }else{
-
-
-             }
-
-              
-           });
+       return this.storage.executeSql(`
+        INSERT INTO subjectsummary (studentId,marks,sectionId) 
+        VALUES ('${videoarr.studentId}','${videoarr.marks}',
+        '${videoarr.sectionId}')
+      `, [])
+        .then(insertres => {
+            alert("checking");
+            alert(JSON.stringify(insertres));
+           
+        }); 
 
     }
+
+    fetchtotal(videoarr):Promise<any> {
+
+       return this.storage.executeSql('SELECT Max(marks) FROM subjectsummary limit 0, ? '
+       + ' where sectionId =? and studentId =?', [videoarr.limit,videoarr.sectionid,videoarr.studentid]).then(res => {
+
+            let resdata = [];
+            if (res.rows.length > 0) {
+
+                for (var i = 0; i < res.rows.length; i++) {
+                    let resp = res.rows.item(i);
+                    alert(resp);
+
+                    /*const localdata: any = {
+                        facultyName: resp.facultyName,
+                        Subject: resp.Subject,
+                        description: resp.description,
+                        base64: resp.base64,
+                        topicName: resp.topicName,
+                        subVideoId: resp.subVideoId,
+                        subtopicName: resp.subtopicName,
+                        videosize:resp.videosize,
+                        videoId: resp.videoId
+                    }
+
+                    resdata.push(localdata);
+                }*/
+
+            }
+            //this.records.next(resdata);
+            }
+
+        }).catch(e => {
+            alert("error12 " + JSON.stringify(e))
+        });
+     }
 }
